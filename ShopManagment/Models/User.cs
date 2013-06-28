@@ -28,7 +28,10 @@ namespace ShopManagment.Models
         /// <returns>True if user exist and password is correct</returns>
         public bool IsValid(string _username, string _password)
         {
-            if (_username.Equals("admin") && _password.Equals("123")) return true;
+            using (var context = new ShopEntities())
+            {
+                if (context.Admins.Any(a => a.Username == _username && a.Password == _password)) return true;
+            }
             return false;
 
 
