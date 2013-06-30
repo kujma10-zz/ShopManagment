@@ -12,11 +12,14 @@ namespace ShopManagment.Controllers
 
     public class HomeController : Controller
     {
+        private ShopEntities db = new ShopEntities();
+
+        //
+        // GET: /Categories/
+
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
-            return View();
+            return View(db.Categories.ToList());
         }
 
         public ActionResult About()

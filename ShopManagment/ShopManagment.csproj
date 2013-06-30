@@ -170,6 +170,7 @@
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StorageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -333,6 +334,11 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Logout.cshtml" />
     <Content Include="Views\Home\StorageOperatorPage.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,13 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ShopModelStoreContainer">
           <EntitySet Name="Admins" EntityType="ShopModel.Store.Admins" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Categories" EntityType="ShopModel.Store.Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Products" EntityType="ShopModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Storages" EntityType="ShopModel.Store.Storages" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Products__Price__1A14E395" Association="ShopModel.Store.FK__Products__Price__1A14E395">
+          <AssociationSet Name="FK__Products__Price__25869641" Association="ShopModel.Store.FK__Products__Price__25869641">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
@@ -52,7 +52,7 @@
           <Property Name="Opened" Type="date" Nullable="false" />
           <Property Name="Closed" Type="date" />
         </EntityType>
-        <Association Name="FK__Products__Price__1A14E395">
+        <Association Name="FK__Products__Price__25869641">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -64,8 +64,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShopModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

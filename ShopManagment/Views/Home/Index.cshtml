@@ -13,7 +13,7 @@
     <section class="content-wrapper main-content clear-fix">
           @if (!Request.IsAuthenticated){
               @Html.Partial("~/Views/User/Login.cshtml")
-          } else {
+          } else { // aq kidev  2 else iqneba savaraudod danarcheni adminebistvis
               @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
           }
     </section>

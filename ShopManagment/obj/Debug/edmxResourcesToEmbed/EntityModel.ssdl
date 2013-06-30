@@ -5,7 +5,7 @@
     <EntitySet Name="Categories" EntityType="ShopModel.Store.Categories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Products" EntityType="ShopModel.Store.Products" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Storages" EntityType="ShopModel.Store.Storages" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK__Products__Price__1A14E395" Association="ShopModel.Store.FK__Products__Price__1A14E395">
+    <AssociationSet Name="FK__Products__Price__25869641" Association="ShopModel.Store.FK__Products__Price__25869641">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Products" EntitySet="Products" />
     </AssociationSet>
@@ -47,7 +47,7 @@
     <Property Name="Opened" Type="date" Nullable="false" />
     <Property Name="Closed" Type="date" />
   </EntityType>
-  <Association Name="FK__Products__Price__1A14E395">
+  <Association Name="FK__Products__Price__25869641">
     <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
     <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="*" />
     <ReferentialConstraint>
