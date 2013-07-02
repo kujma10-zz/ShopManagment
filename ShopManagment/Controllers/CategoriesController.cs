@@ -105,9 +105,18 @@ namespace ShopManagment.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (db.Products.Any(a => a.CatID == id))
+            {
+                ModelState.AddModelError("", "კატეგორიაში რეგისტრირებულია პროდუქციის ტიპები. კატეგორიის გასაუქმებლად აუცილებელია კატეგორიაში რეგისტრირებული ტიპების წაშლა.");
+                return View(category);
+            }
+            else
+            {
+                db.Categories.Remove(category);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+           
         }
 
         protected override void Dispose(bool disposing)
