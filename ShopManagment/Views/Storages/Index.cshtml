@@ -8,6 +8,7 @@
 
 <p>
     @Html.ActionLink("ახალი საწყობის დამატება", "Create")
+    @Html.ActionLink("პროდუქციის გადატანა", "Move")
 </p>
 <table>
     <tr>
@@ -47,6 +48,7 @@
             @Html.DisplayFor(modelItem => item.Closed)
         </td>
         <td>
+            @Html.ActionLink("შესყიდვა", "Purchase", new { id=item.ID }) |
             @Html.ActionLink("რედაქტირება", "Edit", new { id=item.ID }) |
             @Html.ActionLink("ნაშთები", "Details", new { id=item.ID }) |
             @Html.ActionLink("დახურვა", "Delete", new { id=item.ID })

@@ -1,0 +1,70 @@
+﻿@model ShopManagment.Models.MoveProducts
+
+@{
+    ViewBag.Title = "Move";
+}
+
+<h2>პროდუქციის გადატანა</h2>
+<p></p>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product</legend>
+        
+         <div class="editor-label">
+            @Html.LabelFor(model => model.StorageFromID, "რომელი საწყობიდან?")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("StorageID", String.Empty)
+            @Html.ValidationMessageFor(model => model.StorageFromID)
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.StorageToID, "რომელ საწყობში?")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("StorageID", String.Empty)
+            @Html.ValidationMessageFor(model => model.StorageToID)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CatID, "კატეგორია")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CatID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CatID)
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.ProductID, "პროდუქტი")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ProductID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ProductID)
+        </div>
+
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Quantity, "რაოდენობა")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Quantity)
+            @Html.ValidationMessageFor(model => model.Quantity)
+        </div>
+
+        <p>
+            <input type="submit" value="გადატანა" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("უკან", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

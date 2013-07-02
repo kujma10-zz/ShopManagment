@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopManagment.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -108,6 +109,62 @@ namespace ShopManagment.Controllers
             db.Storages.Remove(storage);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //
+        // GET: /Storages/Move/5
+
+        public ActionResult Move()
+        {
+            ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name");
+            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            return View();
+        }
+
+        //
+        // POST: /Storages/Move/5
+
+        [HttpPost]
+        public ActionResult Move(MoveProducts mp)
+        {
+            if (mp.StorageFromID == mp.StorageToID)
+            {
+                ModelState.AddModelError("", "აირჩიეთ სხვადასხვა საწყობები" + mp.Quantity);
+            }
+            else
+            {
+                Balance from = db.Balances.Find(mp.StorageFromID, mp.CatID, mp.ProductID);
+                Balance to = db.Balances.Find(mp.StorageToID, mp.CatID, mp.ProductID);
+                if (from == null)
+                {
+                    ModelState.AddModelError("", "ასეთი პროდუქტი არ არსებობს საწყობში");
+                }
+                else if (to == null)
+                {
+                    ModelState.AddModelError("", "ასეთი პროდუქტი არ არსებობს მეორე საწყობში");
+                }
+                else
+                {
+                    if (mp.Quantity > from.Quantity)
+                    {
+                        ModelState.AddModelError("", "მითითებული პროდუქციის რაოდენობა აღემატება საწყობის ნაშთს");
+                    }
+                    else
+                    {
+                        from.Quantity = from.Quantity - mp.Quantity;
+                        to.Quantity = to.Quantity + mp.Quantity;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    
+                }
+                
+            }
+            ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name");
+            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            return View();
         }
 
         protected override void Dispose(bool disposing)

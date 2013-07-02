@@ -70,3 +70,5 @@ insert into Balances values(2, 1, 1, 150);
 insert into Balances values(3, 1, 1, 200);
 insert into Balances values(3, 1, 2, 150);
 insert into Balances values(3, 3, 6, 1150);
+
+select * from storages

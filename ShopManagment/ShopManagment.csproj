@@ -198,6 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\MoveProducts.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
@@ -353,6 +354,7 @@
     <Content Include="Views\Storages\Create.cshtml" />
     <Content Include="Views\Storages\Edit.cshtml" />
     <Content Include="Views\Storages\Delete.cshtml" />
+    <Content Include="Views\Storages\Move.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
