@@ -17,6 +17,7 @@ namespace ShopManagment
         public Category()
         {
             this.Products = new HashSet<Product>();
+            this.Balances = new HashSet<Balance>();
         }
     
         public int ID { get; set; }
@@ -24,5 +25,6 @@ namespace ShopManagment
         public string Descr { get; set; }
     
         public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Balance> Balances { get; set; }
     }
 }

@@ -14,6 +14,11 @@ namespace ShopManagment
     
     public partial class Product
     {
+        public Product()
+        {
+            this.Balances = new HashSet<Balance>();
+        }
+    
         public int ID { get; set; }
         public int CatID { get; set; }
         public string Name { get; set; }
@@ -21,5 +26,6 @@ namespace ShopManagment
         public Nullable<double> Price { get; set; }
     
         public virtual Category Category { get; set; }
+        public virtual ICollection<Balance> Balances { get; set; }
     }
 }

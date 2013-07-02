@@ -12,20 +12,15 @@ namespace ShopManagment
     using System;
     using System.Collections.Generic;
     
-    public partial class Storage
+    public partial class Balance
     {
-        public Storage()
-        {
-            this.Balances = new HashSet<Balance>();
-        }
+        public int StorageID { get; set; }
+        public int CatID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
     
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Descr { get; set; }
-        public string Addr { get; set; }
-        public System.DateTime Opened { get; set; }
-        public Nullable<System.DateTime> Closed { get; set; }
-    
-        public virtual ICollection<Balance> Balances { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Storage Storage { get; set; }
     }
 }
