@@ -7,10 +7,10 @@ namespace ShopManagment.Models
 {
     public class MoveProducts
     {
-        public int StorageFromID;
-        public int StorageToID;
-        public int CatID;
-        public int ProductID;
-        public int Quantity;
+        public int StorageFromID { get; set; }
+        public int StorageToID { get; set; }
+        public int CatID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
     }
 }

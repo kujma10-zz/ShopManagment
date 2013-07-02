@@ -49,6 +49,7 @@
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="CatID" ColumnName="CatID" />
           <ScalarProperty Name="StorageID" ColumnName="StorageID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

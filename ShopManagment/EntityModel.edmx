@@ -7,26 +7,19 @@
     <Schema Namespace="ShopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ShopModelStoreContainer">
           <EntitySet Name="Admins" EntityType="ShopModel.Store.Admins" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Balances" EntityType="ShopModel.Store.Balances" store:Type="Tables" store:Schema="dbo" store:Name="Balances">
-            <DefiningQuery>SELECT 
-      [Balances].[StorageID] AS [StorageID], 
-      [Balances].[CatID] AS [CatID], 
-      [Balances].[ProductID] AS [ProductID], 
-      [Balances].[Quantity] AS [Quantity]
-      FROM [dbo].[Balances] AS [Balances]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Balances" EntityType="ShopModel.Store.Balances" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Categories" EntityType="ShopModel.Store.Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Products" EntityType="ShopModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Storages" EntityType="ShopModel.Store.Storages" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Balances__CatID__3C69FB99" Association="ShopModel.Store.FK__Balances__CatID__3C69FB99">
+          <AssociationSet Name="FK__Balances__CatID__4AB81AF0" Association="ShopModel.Store.FK__Balances__CatID__4AB81AF0">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Produc__3D5E1FD2" Association="ShopModel.Store.FK__Balances__Produc__3D5E1FD2">
+          <AssociationSet Name="FK__Balances__Produc__4BAC3F29" Association="ShopModel.Store.FK__Balances__Produc__4BAC3F29">
             <End Role="Products" EntitySet="Products" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Quanti__3B75D760" Association="ShopModel.Store.FK__Balances__Quanti__3B75D760">
+          <AssociationSet Name="FK__Balances__Quanti__49C3F6B7" Association="ShopModel.Store.FK__Balances__Quanti__49C3F6B7">
             <End Role="Storages" EntitySet="Storages" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
@@ -43,16 +36,11 @@
           <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="12" />
           <Property Name="AdminType" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'shop.dbo.Balances' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="Balances">
           <Key>
-            <PropertyRef Name="StorageID" />
-            <PropertyRef Name="CatID" />
-            <PropertyRef Name="ProductID" />
-            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="StorageID" Type="int" Nullable="false" />
           <Property Name="CatID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
@@ -87,7 +75,7 @@
           <Property Name="Opened" Type="date" Nullable="false" />
           <Property Name="Closed" Type="date" />
         </EntityType>
-        <Association Name="FK__Balances__CatID__3C69FB99">
+        <Association Name="FK__Balances__CatID__4AB81AF0">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,7 +87,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Produc__3D5E1FD2">
+        <Association Name="FK__Balances__Produc__4BAC3F29">
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +99,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Quanti__3B75D760">
+        <Association Name="FK__Balances__Quanti__49C3F6B7">
           <End Role="Storages" Type="ShopModel.Store.Storages" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -149,19 +137,19 @@
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
           <EntitySet Name="Balances" EntityType="ShopModel.Balance" />
-          <AssociationSet Name="FK__Balances__CatID__3C69FB99" Association="ShopModel.FK__Balances__CatID__3C69FB99">
+          <AssociationSet Name="FK__Balances__CatID__4AB81AF0" Association="ShopModel.FK__Balances__CatID__4AB81AF0">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Balance" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Produc__3D5E1FD2" Association="ShopModel.FK__Balances__Produc__3D5E1FD2">
+          <AssociationSet Name="FK__Balances__Produc__4BAC3F29" Association="ShopModel.FK__Balances__Produc__4BAC3F29">
             <End Role="Product" EntitySet="Products" />
             <End Role="Balance" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Quanti__3B75D760" Association="ShopModel.FK__Balances__Quanti__3B75D760">
+          <AssociationSet Name="FK__Balances__Quanti__49C3F6B7" Association="ShopModel.FK__Balances__Quanti__49C3F6B7">
             <End Role="Storage" EntitySet="Storages" />
             <End Role="Balance" EntitySet="Balances" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Username" />
@@ -178,7 +166,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
           <Property Name="Descr" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Products" Relationship="ShopModel.FK__Products__Price__1A14E395" FromRole="Categories" ToRole="Products" />
-          <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__CatID__3C69FB99" FromRole="Category" ToRole="Balance" />
+          <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__CatID__4AB81AF0" FromRole="Category" ToRole="Balance" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -190,7 +178,7 @@
           <Property Name="Descr" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
           <Property Name="Price" Type="Double" />
           <NavigationProperty Name="Category" Relationship="ShopModel.FK__Products__Price__1A14E395" FromRole="Products" ToRole="Categories" />
-          <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__Produc__3D5E1FD2" FromRole="Product" ToRole="Balance" />
+          <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__Produc__4BAC3F29" FromRole="Product" ToRole="Balance" />
         </EntityType>
         <EntityType Name="Storage">
           <Key>
@@ -202,7 +190,7 @@
           <Property Name="Addr" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
           <Property Name="Opened" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Closed" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__Quanti__3B75D760" FromRole="Storage" ToRole="Balance" />
+          <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__Quanti__49C3F6B7" FromRole="Storage" ToRole="Balance" />
         </EntityType>
         <Association Name="FK__Products__Price__1A14E395">
           <End Role="Categories" Type="ShopModel.Category" Multiplicity="1" />
@@ -218,20 +206,18 @@
         </Association>
         <EntityType Name="Balance">
           <Key>
-            <PropertyRef Name="StorageID" />
-            <PropertyRef Name="CatID" />
-            <PropertyRef Name="ProductID" />
-            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="StorageID" Nullable="false" />
           <Property Type="Int32" Name="CatID" Nullable="false" />
           <Property Type="Int32" Name="ProductID" Nullable="false" />
           <Property Type="Int32" Name="Quantity" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="ShopModel.FK__Balances__CatID__3C69FB99" FromRole="Balance" ToRole="Category" />
-          <NavigationProperty Name="Product" Relationship="ShopModel.FK__Balances__Produc__3D5E1FD2" FromRole="Balance" ToRole="Product" />
-          <NavigationProperty Name="Storage" Relationship="ShopModel.FK__Balances__Quanti__3B75D760" FromRole="Balance" ToRole="Storage" />
+          <NavigationProperty Name="Category" Relationship="ShopModel.FK__Balances__CatID__4AB81AF0" FromRole="Balance" ToRole="Category" />
+          <NavigationProperty Name="Product" Relationship="ShopModel.FK__Balances__Produc__4BAC3F29" FromRole="Balance" ToRole="Product" />
+          <NavigationProperty Name="Storage" Relationship="ShopModel.FK__Balances__Quanti__49C3F6B7" FromRole="Balance" ToRole="Storage" />
         </EntityType>
-        <Association Name="FK__Balances__CatID__3C69FB99">
+        <Association Name="FK__Balances__CatID__4AB81AF0">
           <End Type="ShopModel.Category" Role="Category" Multiplicity="1" />
           <End Type="ShopModel.Balance" Role="Balance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -243,7 +229,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Produc__3D5E1FD2">
+        <Association Name="FK__Balances__Produc__4BAC3F29">
           <End Type="ShopModel.Product" Role="Product" Multiplicity="1" />
           <End Type="ShopModel.Balance" Role="Balance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -255,7 +241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Quanti__3B75D760">
+        <Association Name="FK__Balances__Quanti__49C3F6B7">
           <End Type="ShopModel.Storage" Role="Storage" Multiplicity="1" />
           <End Type="ShopModel.Balance" Role="Balance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -267,7 +253,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -321,6 +307,7 @@
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="CatID" ColumnName="CatID" />
                 <ScalarProperty Name="StorageID" ColumnName="StorageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,6 +14,7 @@ namespace ShopManagment
     
     public partial class Balance
     {
+        public int ID { get; set; }
         public int StorageID { get; set; }
         public int CatID { get; set; }
         public int ProductID { get; set; }

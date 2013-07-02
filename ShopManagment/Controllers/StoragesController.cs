@@ -116,7 +116,8 @@ namespace ShopManagment.Controllers
 
         public ActionResult Move()
         {
-            ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name");
+            ViewBag.StorageFromID = new SelectList(db.Storages, "ID", "Name");
+            ViewBag.StorageToID = new SelectList(db.Storages, "ID", "Name");
             ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
             return View();
@@ -130,40 +131,64 @@ namespace ShopManagment.Controllers
         {
             if (mp.StorageFromID == mp.StorageToID)
             {
-                ModelState.AddModelError("", "აირჩიეთ სხვადასხვა საწყობები" + mp.Quantity);
+                ModelState.AddModelError("", "აირჩიეთ სხვადასხვა საწყობები.");
             }
             else
             {
-                Balance from = db.Balances.Find(mp.StorageFromID, mp.CatID, mp.ProductID);
-                Balance to = db.Balances.Find(mp.StorageToID, mp.CatID, mp.ProductID);
-                if (from == null)
+                var from = from a in db.Balances where a.StorageID == mp.StorageFromID && a.CatID == mp.CatID && a.ProductID == mp.ProductID select a;
+                var to = from a in db.Balances where a.StorageID == mp.StorageToID && a.CatID == mp.CatID && a.ProductID == mp.ProductID select a;
+                if (from.ToList().Count == 0)
                 {
-                    ModelState.AddModelError("", "ასეთი პროდუქტი არ არსებობს საწყობში");
+                    ModelState.AddModelError("", "ასეთი პროდუქტი არ არსებობს საწყობში.");
                 }
-                else if (to == null)
+                else if (mp.Quantity > from.First().Quantity)
                 {
-                    ModelState.AddModelError("", "ასეთი პროდუქტი არ არსებობს მეორე საწყობში");
+                    ModelState.AddModelError("", "მითითებული პროდუქციის რაოდენობა აღემატება საწყობის ნაშთს.");
                 }
-                else
+                else 
                 {
-                    if (mp.Quantity > from.Quantity)
-                    {
-                        ModelState.AddModelError("", "მითითებული პროდუქციის რაოდენობა აღემატება საწყობის ნაშთს");
+                    if (to.ToList().Count == 0){
+                        // ასეთი პროდუქტი საწყობში არ არსებობს ჯერ და ამიტომ ახალს ვქმნით
+                        Balance b = new Balance();
+                        b.ProductID = mp.ProductID;
+                        b.CatID = mp.CatID;
+                        b.StorageID = mp.StorageToID;
+                        b.Quantity = mp.Quantity;
+                        db.Balances.Add(b);
+                    } else {
+                        to.First().Quantity = to.First().Quantity + mp.Quantity;
                     }
-                    else
-                    {
-                        from.Quantity = from.Quantity - mp.Quantity;
-                        to.Quantity = to.Quantity + mp.Quantity;
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                    
+                    from.First().Quantity = from.First().Quantity - mp.Quantity;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                
+      
+
             }
-            ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name");
+            ViewBag.StorageFromID = new SelectList(db.Storages, "ID", "Name");
+            ViewBag.StorageToID = new SelectList(db.Storages, "ID", "Name");
             ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            return View();
+        }
+
+        //
+        // GET: /Storages/Purchase/5
+
+        public ActionResult Purchase(int id = 0)
+        {
+            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            return View();
+        }
+
+        //
+        // POST: /Storages/Purchase/5
+
+        [HttpPost]
+        public ActionResult Purchase(MoveProducts mp)
+        {
+            
             return View();
         }
 

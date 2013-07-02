@@ -32,6 +32,7 @@ CREATE TABLE Storages(
 )
 
 CREATE TABLE Balances(
+   ID INT IDENTITY NOT NULL PRIMARY KEY,
    StorageID INT NOT NULL,
    CatID INT NOT NULL,
    ProductID INT NOT NULL,
@@ -71,4 +72,6 @@ insert into Balances values(3, 1, 1, 200);
 insert into Balances values(3, 1, 2, 150);
 insert into Balances values(3, 3, 6, 1150);
 
-select * from storages
+select * from Categories;
+select * from Products;
+select * from Balances;

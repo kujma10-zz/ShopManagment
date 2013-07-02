@@ -355,6 +355,7 @@
     <Content Include="Views\Storages\Edit.cshtml" />
     <Content Include="Views\Storages\Delete.cshtml" />
     <Content Include="Views\Storages\Move.cshtml" />
+    <Content Include="Views\Storages\Purchase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
