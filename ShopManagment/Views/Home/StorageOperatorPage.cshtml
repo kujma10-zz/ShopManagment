@@ -1,6 +1,16 @@
 ﻿@{
     ViewBag.Title = "საწყობის ოპერატორის გვერდი";
+   
 }
+
+<div id='cssmenu'>
+<ul>
+   <li><span>@Html.ActionLink("კატეგორიები", "Index", "Categories")</span></li>
+   <li><span>@Html.ActionLink("პროდუქტები", "Index", "Products")</span></li>
+   <li><<span>@Html.ActionLink("საწყობების მართვა", "Index", "Storages")</span></li>
+   <li><a href='#'><span>ნაშთები</span></a></li>
+</ul>
+</div>
 
 <div id="tabs">
     <ul>
@@ -10,7 +20,7 @@
         <li><a href="#tabs-4">საწყობების ნაშთები</a></li>
     </ul>
     <div id="tabs-1">
-        @Html.Partial("~/Views/Categories/Index.cshtml")
+        @Url.Action("კატეგორიები", "Index", "Categories")
     </div>
     <div id="tabs-2">
         <p>აქ უნდა გამოჩნდეს პროდუქტების ცხრილი</p>

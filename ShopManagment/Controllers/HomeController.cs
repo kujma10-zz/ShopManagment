@@ -12,14 +12,19 @@ namespace ShopManagment.Controllers
 
     public class HomeController : Controller
     {
-        private ShopEntities db = new ShopEntities();
-
+        //private ShopEntities db = new ShopEntities();
+        /*
+         *   <li><span>@Html.ActionLink("კატეგორიები", "Index", "Categories")</span></li>
+             <li><span>@Html.ActionLink("პროდუქტები", "Index", "Products")</span></li>
+             <li><<span>@Html.ActionLink("საწყობების მართვა", "Index", "Storages")</span></li>
+         * 
+         * */
         //
         // GET: /Categories/
 
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            return View();
         }
 
         public ActionResult About()
