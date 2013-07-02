@@ -39,8 +39,9 @@
     </div>
 </fieldset>
 @using (Html.BeginForm()) {
+    @Html.ValidationSummary(true);
     <p>
         <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("უკან", "Index")
     </p>
 }

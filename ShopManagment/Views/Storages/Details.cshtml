@@ -1,0 +1,50 @@
+﻿@model ShopManagment.Storage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Storage</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descr)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descr)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Addr)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Addr)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Opened)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Opened)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Closed)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Closed)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

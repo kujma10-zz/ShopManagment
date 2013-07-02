@@ -110,9 +110,17 @@ namespace ShopManagment.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
-            db.Products.Remove(product);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (db.Balances.Any(a => a.ProductID == id))
+            {
+                ModelState.AddModelError("", "პროდუქტის ტიპის გაუქმებულია შეუძლებელია. ამ ტიპზე საწყობში რეგისტრირებულია პროდუქცია.");
+                return View(product);
+            }
+            else
+            {
+                db.Products.Remove(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

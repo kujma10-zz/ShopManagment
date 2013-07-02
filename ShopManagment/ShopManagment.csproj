@@ -166,6 +166,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Balance.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
@@ -173,6 +176,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\StoragesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="EntityModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -344,6 +348,11 @@
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Storages\Index.cshtml" />
+    <Content Include="Views\Storages\Details.cshtml" />
+    <Content Include="Views\Storages\Create.cshtml" />
+    <Content Include="Views\Storages\Edit.cshtml" />
+    <Content Include="Views\Storages\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

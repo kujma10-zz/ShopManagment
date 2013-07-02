@@ -1,0 +1,69 @@
+﻿@model ShopManagment.Storage
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Storage</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descr)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descr)
+            @Html.ValidationMessageFor(model => model.Descr)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Addr)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Addr)
+            @Html.ValidationMessageFor(model => model.Addr)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Opened)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Opened)
+            @Html.ValidationMessageFor(model => model.Opened)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Closed)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Closed)
+            @Html.ValidationMessageFor(model => model.Closed)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
