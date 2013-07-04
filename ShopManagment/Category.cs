@@ -23,6 +23,7 @@ namespace ShopManagment
         public int ID { get; set; }
         public string Name { get; set; }
         public string Descr { get; set; }
+        public bool Disabled { get; set; }
     
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<Balance> Balances { get; set; }

@@ -40,6 +40,7 @@
     <Property Name="Descr" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Products" Relationship="ShopModel.FK__Products__Price__1A14E395" FromRole="Categories" ToRole="Products" />
     <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__CatID__4AB81AF0" FromRole="Category" ToRole="Balance" />
+    <Property Type="Boolean" Name="Disabled" Nullable="false" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -52,6 +53,7 @@
     <Property Name="Price" Type="Double" />
     <NavigationProperty Name="Category" Relationship="ShopModel.FK__Products__Price__1A14E395" FromRole="Products" ToRole="Categories" />
     <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__Produc__4BAC3F29" FromRole="Product" ToRole="Balance" />
+    <Property Type="Boolean" Name="Disabled" Nullable="false" />
   </EntityType>
   <EntityType Name="Storage">
     <Key>

@@ -50,6 +50,7 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
+                storage.Opened = DateTime.Today;
                 db.Storages.Add(storage);
                 db.SaveChanges();
                 return RedirectToAction("Index");

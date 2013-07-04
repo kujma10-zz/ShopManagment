@@ -8,9 +8,9 @@
         <EntityTypeShape EntityType="ShopModel.Admin" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ShopModel.Category" Width="1.5" PointX="0.5" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ShopModel.Product" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopModel.Storage" Width="1.5" PointX="2" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopModel.Storage" Width="1.5" PointX="3.75" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="ShopModel.FK__Products__Price__1A14E395" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ShopModel.Balance" Width="1.5" PointX="6.125" PointY="5.875" />
+        <EntityTypeShape EntityType="ShopModel.Balance" Width="1.5" PointX="6.125" PointY="3.125" />
         <AssociationConnector Association="ShopModel.FK__Balances__CatID__4AB81AF0" />
         <AssociationConnector Association="ShopModel.FK__Balances__Produc__4BAC3F29" />
         <AssociationConnector Association="ShopModel.FK__Balances__Quanti__49C3F6B7" />

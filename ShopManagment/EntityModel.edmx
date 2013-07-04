@@ -11,19 +11,19 @@
           <EntitySet Name="Categories" EntityType="ShopModel.Store.Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Products" EntityType="ShopModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Storages" EntityType="ShopModel.Store.Storages" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Balances__CatID__4AB81AF0" Association="ShopModel.Store.FK__Balances__CatID__4AB81AF0">
+          <AssociationSet Name="FK__Balances__CatID__778AC167" Association="ShopModel.Store.FK__Balances__CatID__778AC167">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Produc__4BAC3F29" Association="ShopModel.Store.FK__Balances__Produc__4BAC3F29">
+          <AssociationSet Name="FK__Balances__Produc__787EE5A0" Association="ShopModel.Store.FK__Balances__Produc__787EE5A0">
             <End Role="Products" EntitySet="Products" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Quanti__49C3F6B7" Association="ShopModel.Store.FK__Balances__Quanti__49C3F6B7">
+          <AssociationSet Name="FK__Balances__Quanti__76969D2E" Association="ShopModel.Store.FK__Balances__Quanti__76969D2E">
             <End Role="Storages" EntitySet="Storages" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__Price__25869641" Association="ShopModel.Store.FK__Products__Price__25869641">
+          <AssociationSet Name="FK__Products__Disabl__70DDC3D8" Association="ShopModel.Store.FK__Products__Disabl__70DDC3D8">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
@@ -53,6 +53,7 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
           <Property Name="Descr" Type="nvarchar" MaxLength="300" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -63,6 +64,7 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
           <Property Name="Descr" Type="nvarchar" MaxLength="300" />
           <Property Name="Price" Type="float" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Storages">
           <Key>
@@ -75,7 +77,7 @@
           <Property Name="Opened" Type="date" Nullable="false" />
           <Property Name="Closed" Type="date" />
         </EntityType>
-        <Association Name="FK__Balances__CatID__4AB81AF0">
+        <Association Name="FK__Balances__CatID__778AC167">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,7 +89,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Produc__4BAC3F29">
+        <Association Name="FK__Balances__Produc__787EE5A0">
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Quanti__49C3F6B7">
+        <Association Name="FK__Balances__Quanti__76969D2E">
           <End Role="Storages" Type="ShopModel.Store.Storages" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__Price__25869641">
+        <Association Name="FK__Products__Disabl__70DDC3D8">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -167,6 +169,7 @@
           <Property Name="Descr" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Products" Relationship="ShopModel.FK__Products__Price__1A14E395" FromRole="Categories" ToRole="Products" />
           <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__CatID__4AB81AF0" FromRole="Category" ToRole="Balance" />
+          <Property Type="Boolean" Name="Disabled" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -179,6 +182,7 @@
           <Property Name="Price" Type="Double" />
           <NavigationProperty Name="Category" Relationship="ShopModel.FK__Products__Price__1A14E395" FromRole="Products" ToRole="Categories" />
           <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__Produc__4BAC3F29" FromRole="Product" ToRole="Balance" />
+          <Property Type="Boolean" Name="Disabled" Nullable="false" />
         </EntityType>
         <EntityType Name="Storage">
           <Key>
@@ -271,6 +275,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="ShopModel.Category">
               <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Descr" ColumnName="Descr" />
@@ -280,6 +285,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="ShopModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CatID" ColumnName="CatID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

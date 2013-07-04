@@ -24,6 +24,7 @@ namespace ShopManagment
         public string Name { get; set; }
         public string Descr { get; set; }
         public Nullable<double> Price { get; set; }
+        public bool Disabled { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual ICollection<Balance> Balances { get; set; }
