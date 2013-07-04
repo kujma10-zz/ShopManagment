@@ -10,7 +10,9 @@
     @Html.ActionLink("ახალი საწყობის დამატება", "Create")
     @Html.ActionLink("პროდუქციის გადატანა", "Move")
 </p>
+<div class="datagrid">
 <table>
+    <thead>
     <tr>
         <th>
             სახელი
@@ -29,8 +31,9 @@
         </th>
         <th></th>
     </tr>
-
+    </thead>
 @foreach (var item in Model) {
+    <tbody>
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -53,6 +56,8 @@
             @Html.ActionLink("დახურვა", "Delete", new { id=item.ID })
         </td>
     </tr>
+    </tbody>
 }
 
 </table>
+</div>
