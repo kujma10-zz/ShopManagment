@@ -117,7 +117,7 @@ namespace ShopManagment.Controllers
             }
             else
             {
-                db.Products.Remove(product);
+                product.Disabled = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

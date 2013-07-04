@@ -17,6 +17,9 @@
         <th>
             აღწერა
         </th>
+        <th>
+            სტატუსი
+        </th>
         <th></th>
     </tr>
 
@@ -27,6 +30,14 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descr)
+        </td>
+        <td>
+            @if(item.Disabled){
+               @Html.Label("გაუქმებულია");
+            } else {
+               @Html.Label("OK");
+            }
+            
         </td>
         <td>
             @Html.ActionLink("რედაქტირება", "Edit", new { id=item.ID }) |

@@ -112,7 +112,7 @@ namespace ShopManagment.Controllers
             }
             else
             {
-                db.Categories.Remove(category);
+                category.Disabled = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
