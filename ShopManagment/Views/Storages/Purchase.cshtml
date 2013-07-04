@@ -13,6 +13,8 @@
     <fieldset>
         <legend>Product</legend>
         
+        @Html.HiddenFor(model => model.StorageID)
+
         <div class="editor-label">
             @Html.LabelFor(model => model.CatID, "კატეგორია")
         </div>

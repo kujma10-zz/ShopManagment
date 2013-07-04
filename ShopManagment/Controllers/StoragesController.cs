@@ -129,41 +129,47 @@ namespace ShopManagment.Controllers
         [HttpPost]
         public ActionResult Move(MoveProducts mp)
         {
-            if (mp.StorageFromID == mp.StorageToID)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "აირჩიეთ სხვადასხვა საწყობები.");
-            }
-            else
-            {
-                var from = from a in db.Balances where a.StorageID == mp.StorageFromID && a.CatID == mp.CatID && a.ProductID == mp.ProductID select a;
-                var to = from a in db.Balances where a.StorageID == mp.StorageToID && a.CatID == mp.CatID && a.ProductID == mp.ProductID select a;
-                if (from.ToList().Count == 0)
+                if (mp.StorageFromID == mp.StorageToID)
                 {
-                    ModelState.AddModelError("", "ასეთი პროდუქტი არ არსებობს საწყობში.");
+                    ModelState.AddModelError("", "აირჩიეთ სხვადასხვა საწყობები.");
                 }
-                else if (mp.Quantity > from.First().Quantity)
+                else
                 {
-                    ModelState.AddModelError("", "მითითებული პროდუქციის რაოდენობა აღემატება საწყობის ნაშთს.");
-                }
-                else 
-                {
-                    if (to.ToList().Count == 0){
-                        // ასეთი პროდუქტი საწყობში არ არსებობს ჯერ და ამიტომ ახალს ვქმნით
-                        Balance b = new Balance();
-                        b.ProductID = mp.ProductID;
-                        b.CatID = mp.CatID;
-                        b.StorageID = mp.StorageToID;
-                        b.Quantity = mp.Quantity;
-                        db.Balances.Add(b);
-                    } else {
-                        to.First().Quantity = to.First().Quantity + mp.Quantity;
+                    var from = from a in db.Balances where a.StorageID == mp.StorageFromID && a.CatID == mp.CatID && a.ProductID == mp.ProductID select a;
+                    var to = from a in db.Balances where a.StorageID == mp.StorageToID && a.CatID == mp.CatID && a.ProductID == mp.ProductID select a;
+                    if (from.ToList().Count == 0)
+                    {
+                        ModelState.AddModelError("", "ასეთი პროდუქტი არ არსებობს საწყობში.");
                     }
-                    from.First().Quantity = from.First().Quantity - mp.Quantity;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-      
+                    else if (mp.Quantity > from.First().Quantity)
+                    {
+                        ModelState.AddModelError("", "მითითებული პროდუქციის რაოდენობა აღემატება საწყობის ნაშთს.");
+                    }
+                    else
+                    {
+                        if (to.ToList().Count == 0)
+                        {
+                            // ასეთი პროდუქტი საწყობში არ არსებობს ჯერ და ამიტომ ახალს ვქმნით
+                            Balance b = new Balance();
+                            b.ProductID = mp.ProductID;
+                            b.CatID = mp.CatID;
+                            b.StorageID = mp.StorageToID;
+                            b.Quantity = mp.Quantity;
+                            db.Balances.Add(b);
+                        }
+                        else
+                        {
+                            to.First().Quantity = to.First().Quantity + mp.Quantity;
+                        }
+                        from.First().Quantity = from.First().Quantity - mp.Quantity;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
 
+
+                }
             }
             ViewBag.StorageFromID = new SelectList(db.Storages, "ID", "Name");
             ViewBag.StorageToID = new SelectList(db.Storages, "ID", "Name");
@@ -177,19 +183,38 @@ namespace ShopManagment.Controllers
 
         public ActionResult Purchase(int id = 0)
         {
+            Balance b = new Balance();
+            b.StorageID = id;
             ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
-            return View();
+            return View(b);
         }
 
         //
         // POST: /Storages/Purchase/5
 
         [HttpPost]
-        public ActionResult Purchase(MoveProducts mp)
+        public ActionResult Purchase(Balance balance)
         {
+            if (ModelState.IsValid)
+            {
+                var result = from a in db.Balances where a.StorageID == balance.StorageID && a.CatID == balance.CatID && a.ProductID == balance.ProductID select a;
+                if (result.ToList().Count() == 0)
+                {
+                    db.Balances.Add(balance);
+                }
+                else
+                {
+                    Balance b = result.First();
+                    b.Quantity = b.Quantity + balance.Quantity;
+                }
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            return View(balance);
             
-            return View();
         }
 
         protected override void Dispose(bool disposing)
