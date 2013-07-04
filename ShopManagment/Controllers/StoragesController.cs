@@ -106,9 +106,16 @@ namespace ShopManagment.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Storage storage = db.Storages.Find(id);
-            db.Storages.Remove(storage);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var items = db.Balances.Where(a => a.StorageID == id && a.Quantity > 0).ToList();
+            if (items.Count() == 0)
+            {
+                storage.Closed = DateTime.Today;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "საწყობი არ არის ცარიელი, საწყობის დახურვისათვის აუცილებელია საწყობის გაცარიელება, ან პროდუქციის სხვა საწყობებში გადანაწილება");
+            return View(storage);
+
         }
 
         //
@@ -131,7 +138,13 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (mp.StorageFromID == mp.StorageToID)
+                bool isOpen1 = db.Storages.First(a => a.ID == mp.StorageFromID).Closed == null;
+                bool isOpen2 = db.Storages.First(a => a.ID == mp.StorageToID).Closed == null;
+                if (!isOpen1 || !isOpen2)
+                {
+                    ModelState.AddModelError("", "დახურულ საწყობებზე შეუძლებელია ოპერაციის განხორციელება.");
+                }
+                else if (mp.StorageFromID == mp.StorageToID)
                 {
                     ModelState.AddModelError("", "აირჩიეთ სხვადასხვა საწყობები.");
                 }
@@ -139,6 +152,7 @@ namespace ShopManagment.Controllers
                 {
                     var from = from a in db.Balances where a.StorageID == mp.StorageFromID && a.CatID == mp.CatID && a.ProductID == mp.ProductID select a;
                     var to = from a in db.Balances where a.StorageID == mp.StorageToID && a.CatID == mp.CatID && a.ProductID == mp.ProductID select a;
+
                     if (from.ToList().Count == 0)
                     {
                         ModelState.AddModelError("", "ასეთი პროდუქტი არ არსებობს საწყობში.");
@@ -151,7 +165,7 @@ namespace ShopManagment.Controllers
                     {
                         if (to.ToList().Count == 0)
                         {
-                            // ასეთი პროდუქტი საწყობში არ არსებობს ჯერ და ამიტომ ახალს ვქმნით
+                            // ასეთი პროდუქტი დანიშნულების საწყობში არ არსებობს ჯერ და ამიტომ ახალს ვქმნით
                             Balance b = new Balance();
                             b.ProductID = mp.ProductID;
                             b.CatID = mp.CatID;
@@ -214,7 +228,7 @@ namespace ShopManagment.Controllers
             ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
             return View(balance);
-            
+
         }
 
         protected override void Dispose(bool disposing)
