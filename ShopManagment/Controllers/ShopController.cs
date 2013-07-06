@@ -16,5 +16,14 @@ namespace ShopManagment.Controllers
             return View();
         }
 
+        public ActionResult Sales()
+        {
+            return View();
+        }
+
+        public ActionResult History()
+        {
+            return View();
+        }
     }
 }

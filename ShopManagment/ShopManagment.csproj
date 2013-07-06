@@ -358,6 +358,8 @@
     <Content Include="Views\Storages\Move.cshtml" />
     <Content Include="Views\Storages\Purchase.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shop\Sales.cshtml" />
+    <Content Include="Views\Shop\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
