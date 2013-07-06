@@ -50,10 +50,15 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
-                storage.Opened = DateTime.Today;
-                db.Storages.Add(storage);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                bool exists = db.Storages.Where(a => a.Name.Equals(storage.Name)).ToList().Count()!=0;
+                if (!exists)
+                {
+                    storage.Opened = DateTime.Today;
+                    db.Storages.Add(storage);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "საწყობი ამ სახელით უკვე არსებობს!");
             }
 
             return View(storage);

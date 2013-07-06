@@ -49,9 +49,14 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                bool exists = db.Categories.Where(a => a.Name.Equals(category.Name)).ToList().Count()!=0;
+                if (!exists)
+                {
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "კატეგორია ამ სახელით უკვე არსებობს!");
             }
 
             return View(category);

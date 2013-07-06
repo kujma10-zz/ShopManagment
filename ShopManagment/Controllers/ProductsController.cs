@@ -39,7 +39,7 @@ namespace ShopManagment.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
+            ViewBag.CatID = new SelectList(db.Categories.Where(a => a.Disabled == false), "ID", "Name");
             return View();
         }
 
@@ -51,12 +51,17 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                bool exists = db.Products.Where(a => a.Name.Equals(product.Name)).ToList().Count()!=0;
+                if (!exists)
+                {
+                    db.Products.Add(product);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "პროდუქტი ამ სახელით უკვე არსებობს!");
             }
 
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name", product.CatID);
+            ViewBag.CatID = new SelectList(db.Categories.Where(a=>a.Disabled == false), "ID", "Name", product.CatID);
             return View(product);
         }
 
@@ -70,7 +75,7 @@ namespace ShopManagment.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name", product.CatID);
+            ViewBag.CatID = new SelectList(db.Categories.Where(a => a.Disabled == false), "ID", "Name", product.CatID);
             return View(product);
         }
 
@@ -86,7 +91,7 @@ namespace ShopManagment.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name", product.CatID);
+            ViewBag.CatID = new SelectList(db.Categories.Where(a => a.Disabled == false), "ID", "Name", product.CatID);
             return View(product);
         }
 
