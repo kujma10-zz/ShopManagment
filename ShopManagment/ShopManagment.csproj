@@ -176,6 +176,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\StoragesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="EntityModel.Context.cs">
@@ -356,6 +357,7 @@
     <Content Include="Views\Storages\Delete.cshtml" />
     <Content Include="Views\Storages\Move.cshtml" />
     <Content Include="Views\Storages\Purchase.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
