@@ -23,7 +23,7 @@ namespace ShopManagment
         public int CatID { get; set; }
         public string Name { get; set; }
         public string Descr { get; set; }
-        public Nullable<double> Price { get; set; }
+        public double Price { get; set; }
         public bool Disabled { get; set; }
     
         public virtual Category Category { get; set; }
