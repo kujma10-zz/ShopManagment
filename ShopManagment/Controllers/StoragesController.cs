@@ -1,4 +1,4 @@
-﻿using ShopManagment.Models;
+﻿﻿using ShopManagment.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -124,10 +124,10 @@ namespace ShopManagment.Controllers
 
         public ActionResult Move()
         {
-            ViewBag.StorageFromID = new SelectList(db.Storages, "ID", "Name");
-            ViewBag.StorageToID = new SelectList(db.Storages, "ID", "Name");
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            ViewBag.StorageFromID = new SelectList(db.Storages.Where(a => a.Closed == null), "ID", "Name");
+            ViewBag.StorageToID = new SelectList(db.Storages.Where(a => a.Closed == null), "ID", "Name");
+            ViewBag.CatID = new SelectList(db.Categories.Where(a => a.Disabled == false), "ID", "Name");
+            ViewBag.ProductID = new SelectList(db.Products.Where(a => a.Disabled == false), "ID", "Name");
             return View();
         }
 
@@ -186,10 +186,10 @@ namespace ShopManagment.Controllers
 
                 }
             }
-            ViewBag.StorageFromID = new SelectList(db.Storages, "ID", "Name");
-            ViewBag.StorageToID = new SelectList(db.Storages, "ID", "Name");
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            ViewBag.StorageFromID = new SelectList(db.Storages.Where(a => a.Closed == null), "ID", "Name");
+            ViewBag.StorageToID = new SelectList(db.Storages.Where(a => a.Closed == null), "ID", "Name");
+            ViewBag.CatID = new SelectList(db.Categories.Where(a => a.Disabled == false), "ID", "Name");
+            ViewBag.ProductID = new SelectList(db.Products.Where(a => a.Disabled == false), "ID", "Name");
             return View();
         }
 
@@ -200,8 +200,8 @@ namespace ShopManagment.Controllers
         {
             Balance b = new Balance();
             b.StorageID = id;
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            ViewBag.CatID = new SelectList(db.Categories.Where(a => a.Disabled == false), "ID", "Name");
+            ViewBag.ProductID = new SelectList(db.Products.Where(a => a.Disabled == false), "ID", "Name");
             return View(b);
         }
 
@@ -213,6 +213,14 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
+                var item = db.Products.Where(a => a.CatID == balance.CatID && a.ID == balance.ProductID).ToList();
+                if (item.Count() == 0)
+                {
+                    ModelState.AddModelError("", "კატეგორიას არ შეესაბამება პროდუქტი");
+                    ViewBag.CatID = new SelectList(db.Categories.Where(a => a.Disabled == false), "ID", "Name");
+                    ViewBag.ProductID = new SelectList(db.Products.Where(a => a.Disabled == false), "ID", "Name");
+                    return View(balance);
+                }
                 var result = from a in db.Balances where a.StorageID == balance.StorageID && a.CatID == balance.CatID && a.ProductID == balance.ProductID select a;
                 if (result.ToList().Count() == 0)
                 {
@@ -226,8 +234,8 @@ namespace ShopManagment.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            ViewBag.CatID = new SelectList(db.Categories.Where(a => a.Disabled == false), "ID", "Name");
+            ViewBag.ProductID = new SelectList(db.Products.Where(a => a.Disabled == false), "ID", "Name");
             return View(balance);
 
         }

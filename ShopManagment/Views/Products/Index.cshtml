@@ -52,8 +52,10 @@
             
         </td>
         <td>
-            @Html.ActionLink("რედაქტირება", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("გაუქმება", "Delete", new { id=item.ID })
+            @if(!item.Disabled){
+                @Html.ActionLink("რედაქტირება", "Edit", new { id=item.ID }) <b>|</b>
+                @Html.ActionLink("გაუქმება", "Delete", new { id=item.ID })
+            }
         </td>
     </tr>
 }
