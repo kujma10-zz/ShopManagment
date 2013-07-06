@@ -53,7 +53,7 @@ namespace ShopManagment.Controllers
                 bool exists = db.Storages.Where(a => a.Name.Equals(storage.Name)).ToList().Count()!=0;
                 if (!exists)
                 {
-                    storage.Opened = DateTime.Today;
+                    storage.Opened = DateTime.Now;
                     db.Storages.Add(storage);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -115,7 +115,7 @@ namespace ShopManagment.Controllers
             var items = db.Balances.Where(a => a.StorageID == id && a.Quantity > 0).ToList();
             if (items.Count() == 0)
             {
-                storage.Closed = DateTime.Today;
+                storage.Closed = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

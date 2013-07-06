@@ -11,15 +11,15 @@
           <EntitySet Name="Categories" EntityType="ShopModel.Store.Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Products" EntityType="ShopModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Storages" EntityType="ShopModel.Store.Storages" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Balances__CatID__778AC167" Association="ShopModel.Store.FK__Balances__CatID__778AC167">
+          <AssociationSet Name="FK__Balances__CatID__06CD04F7" Association="ShopModel.Store.FK__Balances__CatID__06CD04F7">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Produc__787EE5A0" Association="ShopModel.Store.FK__Balances__Produc__787EE5A0">
+          <AssociationSet Name="FK__Balances__Produc__07C12930" Association="ShopModel.Store.FK__Balances__Produc__07C12930">
             <End Role="Products" EntitySet="Products" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Quanti__76969D2E" Association="ShopModel.Store.FK__Balances__Quanti__76969D2E">
+          <AssociationSet Name="FK__Balances__Quanti__05D8E0BE" Association="ShopModel.Store.FK__Balances__Quanti__05D8E0BE">
             <End Role="Storages" EntitySet="Storages" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
@@ -74,10 +74,10 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
           <Property Name="Descr" Type="nvarchar" MaxLength="300" />
           <Property Name="Addr" Type="nvarchar" Nullable="false" MaxLength="150" />
-          <Property Name="Opened" Type="date" Nullable="false" />
-          <Property Name="Closed" Type="date" />
+          <Property Name="Opened" Type="datetime" Nullable="false" />
+          <Property Name="Closed" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Balances__CatID__778AC167">
+        <Association Name="FK__Balances__CatID__06CD04F7">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -89,7 +89,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Produc__787EE5A0">
+        <Association Name="FK__Balances__Produc__07C12930">
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -101,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Quanti__76969D2E">
+        <Association Name="FK__Balances__Quanti__05D8E0BE">
           <End Role="Storages" Type="ShopModel.Store.Storages" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,8 +192,8 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
           <Property Name="Descr" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
           <Property Name="Addr" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
-          <Property Name="Opened" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Closed" Type="DateTime" Precision="0" />
+          <Property Name="Opened" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Closed" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Balances" Relationship="ShopModel.FK__Balances__Quanti__49C3F6B7" FromRole="Storage" ToRole="Balance" />
         </EntityType>
         <Association Name="FK__Products__Price__1A14E395">

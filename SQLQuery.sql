@@ -19,7 +19,7 @@ CREATE TABLE Products(
    CatID INT NOT NULL, 
    Name NVARCHAR(150) NOT NULL,
    Descr NVARCHAR(300),
-   Price float,
+   Price float NOT NULL,
    Disabled BIT NOT NULL DEFAULT 0
    FOREIGN KEY (CatID) REFERENCES Categories(ID)
 )
@@ -29,8 +29,8 @@ CREATE TABLE Storages(
    Name NVARCHAR(150) NOT NULL,
    Descr NVARCHAR(300),
    Addr NVARCHAR(150) NOT NULL,
-   Opened Date NOT NULL DEFAULT GETDATE(),
-   Closed Date
+   Opened Datetime NOT NULL DEFAULT GETDATE(),
+   Closed Datetime
 )
 
 CREATE TABLE Balances(
@@ -63,6 +63,7 @@ insert into Products(CatID, Name, Descr, Price) values(3, 'Shaurma', 'xorcis gar
 insert into Storages(Name, Descr, Addr) values('sawyobi1', 'pirveli sawyobi', 'misamarti1');
 insert into Storages(Name, Descr, Addr) values('sawyobi2', 'meore sawyobi', 'misamarti2');
 insert into Storages(Name, Descr, Addr) values('sawyobi3', 'mesame sawyobi', 'misamarti3');
+insert into Storages(Name, Descr, Addr) values('sawyobi4', 'meotxe sawyobi', 'misamarti4');
 
 insert into Balances values(1, 1, 1, 40);
 insert into Balances values(1, 1, 2, 100);
@@ -78,4 +79,3 @@ select * from Categories;
 select * from Products;
 select * from Balances;
 select * from Storages;
-
