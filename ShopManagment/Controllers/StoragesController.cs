@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ShopManagment.Controllers
 {
+    [AdminOnly]
     public class StoragesController : Controller
     {
         private ShopEntities db = new ShopEntities();

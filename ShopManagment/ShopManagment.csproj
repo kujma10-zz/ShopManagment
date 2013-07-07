@@ -166,6 +166,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Auth.cs" />
     <Compile Include="Balance.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
