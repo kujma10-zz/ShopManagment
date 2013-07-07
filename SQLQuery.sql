@@ -1,7 +1,8 @@
 ﻿use shop;
 
 CREATE TABLE Admins(
-   Username NVARCHAR(40) NOT NULL PRIMARY KEY,
+   ID INT NOT NULL PRIMARY KEY,
+   Username NVARCHAR(40) NOT NULL,
    Password NVARCHAR(12) NOT NULL,
    AdminType INT NOT NULL,
    check(AdminType > 0 and AdminType < 4)
