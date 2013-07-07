@@ -12,23 +12,21 @@ namespace ShopManagment
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Sale
     {
-        public Product()
-        {
-            this.Balances = new HashSet<Balance>();
-            this.Sales = new HashSet<Sale>();
-        }
-    
         public int ID { get; set; }
+        public int AdminID { get; set; }
+        public int StorageID { get; set; }
         public int CatID { get; set; }
-        public string Name { get; set; }
-        public string Descr { get; set; }
+        public int ProductID { get; set; }
+        public System.DateTime Date { get; set; }
         public double Price { get; set; }
-        public bool Disabled { get; set; }
+        public int Quantity { get; set; }
+        public Nullable<bool> Returned { get; set; }
     
+        public virtual Admin Admin { get; set; }
         public virtual Category Category { get; set; }
-        public virtual ICollection<Balance> Balances { get; set; }
-        public virtual ICollection<Sale> Sales { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Storage Storage { get; set; }
     }
 }

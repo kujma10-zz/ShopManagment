@@ -14,8 +14,16 @@ namespace ShopManagment
     
     public partial class Admin
     {
+        public Admin()
+        {
+            this.Sales = new HashSet<Sale>();
+        }
+    
+        public int ID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public int AdminType { get; set; }
+    
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }

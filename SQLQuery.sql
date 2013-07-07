@@ -1,7 +1,7 @@
 ﻿use shop;
 
 CREATE TABLE Admins(
-   ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+   ID INT IDENTITY NOT NULL PRIMARY KEY,
    Username NVARCHAR(40) NOT NULL,
    Password NVARCHAR(12) NOT NULL,
    AdminType INT NOT NULL,
@@ -53,13 +53,18 @@ CREATE TABLE Sales(
    ProductID INT NOT NULL,
    Date Datetime NOT NULL DEFAULT GETDATE(),
    Price float NOT NULL,
-   Quantity INT NOT NULL
-   Returned BIT DEFAULT 0,
+   Quantity INT NOT NULL,
+   Returned BIT DEFAULT 0
    FOREIGN KEY (AdminID) REFERENCES Admins(ID),
    FOREIGN KEY (StorageID) REFERENCES Storages(ID),
    FOREIGN KEY (CatID) REFERENCES Categories(ID),
    FOREIGN KEY (ProductID) REFERENCES Products(ID)
 )
+
+insert into Sales(AdminID, StorageID, CatID, ProductID, Price, Quantity) values(1, 1, 1, 1, 0.2, 2);
+select * from Sales;
+
+
 
 insert into Admins values('kote', '123', 1);
 insert into Admins values('kikola', '123', 2);
@@ -92,7 +97,9 @@ insert into Balances values(3, 1, 1, 200);
 insert into Balances values(3, 1, 2, 150);
 insert into Balances values(3, 3, 6, 1150);
 
+
 select * from Categories;
 select * from Products;
 select * from Balances;
 select * from Storages;
+select * from Admins;

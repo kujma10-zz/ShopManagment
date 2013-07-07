@@ -11,18 +11,16 @@ namespace ShopManagment
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Storage
     {
         public Storage()
         {
             this.Balances = new HashSet<Balance>();
+            this.Sales = new HashSet<Sale>();
         }
     
         public int ID { get; set; }
-        [Required(AllowEmptyStrings = true)]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Name { get; set; }
         public string Descr { get; set; }
         public string Addr { get; set; }
@@ -30,5 +28,6 @@ namespace ShopManagment
         public Nullable<System.DateTime> Closed { get; set; }
     
         public virtual ICollection<Balance> Balances { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }

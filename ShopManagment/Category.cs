@@ -11,7 +11,6 @@ namespace ShopManagment
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Category
     {
@@ -19,16 +18,16 @@ namespace ShopManagment
         {
             this.Products = new HashSet<Product>();
             this.Balances = new HashSet<Balance>();
+            this.Sales = new HashSet<Sale>();
         }
     
         public int ID { get; set; }
-        [Required(AllowEmptyStrings = true)]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Name { get; set; }
         public string Descr { get; set; }
         public bool Disabled { get; set; }
     
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<Balance> Balances { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }
