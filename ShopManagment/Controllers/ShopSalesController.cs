@@ -41,7 +41,7 @@ namespace ShopManagment.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username");
+            ViewBag.AdminID = new SelectList(db.Categories, "ID", "Name");
             ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
             ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name");

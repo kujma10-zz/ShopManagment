@@ -4,11 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>მაღაზიის მენეჯერის გვერდი</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Delete")
-</p>
+<input type="button" value="გაყიდვა" onclick="location.href='@Url.Action("Create", "ShopSales")'" />
 <table>
     <tr>
         <th>
