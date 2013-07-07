@@ -27,7 +27,7 @@ namespace ShopManagment.Controllers
                 if (user.IsValid(user.UserName, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "ShopSales");
                 }
                 else
                 {

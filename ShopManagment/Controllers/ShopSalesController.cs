@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Objects;
 
 namespace ShopManagment.Controllers
 {
@@ -17,8 +18,9 @@ namespace ShopManagment.Controllers
 
         public ActionResult Index()
         {
-            var sales = db.Sales.Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
-            return View(sales.ToList());
+            DateTime today = Convert.ToDateTime(DateTime.Today).Date;
+            return View(db.Sales.Where(s => s.Returned != true &&
+                        EntityFunctions.TruncateTime(s.Date) == today).ToList());
         }
 
         //
