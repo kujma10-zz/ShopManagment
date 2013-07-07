@@ -11,6 +11,7 @@ namespace ShopManagment
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Category
     {
@@ -21,6 +22,8 @@ namespace ShopManagment
         }
     
         public int ID { get; set; }
+        [Required(AllowEmptyStrings = true)]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Name { get; set; }
         public string Descr { get; set; }
         public bool Disabled { get; set; }
