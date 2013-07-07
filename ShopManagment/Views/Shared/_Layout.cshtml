@@ -24,7 +24,7 @@
     <header>
         <div class="content-wrapper">
             <div class="float-left">
-                <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                <p class="site-title">@Html.ActionLink("სუპერმარკეტი \"დუნდრუკი\"", "Index", "Home")</p>
             </div>
             <div class="float-right">
                 <section id="login">
@@ -32,9 +32,16 @@
                 </section>
                 <nav>
                     <ul id="menu">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("საწყისი გვერდი", "Index", "Home")</li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            
+                            <li>@Html.ActionLink("კატეგორიები", "Index", "Categories")</li>
+                            <li>@Html.ActionLink("პროდუქტები", "Index", "Products")</li>
+                            <li>@Html.ActionLink("საწყობები", "Index", "Storages")</li>
+                            <li>@Html.ActionLink("ნაშთები", "Index", "Balances")</li>
+                        }
+                       
                     </ul>
                 </nav>
             </div>
