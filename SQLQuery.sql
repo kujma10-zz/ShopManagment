@@ -45,6 +45,22 @@ CREATE TABLE Balances(
    FOREIGN KEY (ProductID) REFERENCES Products(ID)
 )
 
+CREATE TABLE Sales(
+   ID INT IDENTITY NOT NULL PRIMARY KEY,
+   AdminID INT NOT NULL,
+   StorageID INT NOT NULL,
+   CatID INT NOT NULL,
+   ProductID INT NOT NULL,
+   Date Datetime NOT NULL DEFAULT GETDATE(),
+   Price float NOT NULL,
+   Quantity INT NOT NULL
+   Returned BIT DEFAULT 0,
+   FOREIGN KEY (AdminID) REFERENCES Admins(ID),
+   FOREIGN KEY (StorageID) REFERENCES Storages(ID),
+   FOREIGN KEY (CatID) REFERENCES Categories(ID),
+   FOREIGN KEY (ProductID) REFERENCES Products(ID)
+)
+
 insert into Admins values('kote', '123', 1);
 insert into Admins values('kikola', '123', 2);
 insert into Admins values('jilberta', '123', 3);
