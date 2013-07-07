@@ -84,9 +84,14 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                bool exists = db.Categories.Where(a => a.Name.Equals(category.Name) && a.ID != category.ID).ToList().Count()!=0;
+                if (!exists)
+                {
+                    db.Entry(category).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "კატეგორია ამ სახელით უკვე არსებობს!");
             }
             return View(category);
         }

@@ -86,9 +86,15 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(storage).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                bool exists = db.Storages.Where(a => a.Name.Equals(storage.Name) && a.ID != storage.ID).ToList().Count()!=0;
+                if (!exists)
+                {
+                    
+                    db.Entry(storage).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "საწყობი ამ სახელით უკვე არსებობს!");
             }
             return View(storage);
         }

@@ -88,9 +88,14 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                bool exists = db.Products.Where(a => a.Name.Equals(product.Name) && a.ID != product.ID).ToList().Count()!=0;
+                if (!exists)
+                {
+                    db.Entry(product).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "პროდუქტი ამ სახელით უკვე არსებობს!");
             }
             ViewBag.CatID = new SelectList(db.Categories.Where(a => a.Disabled == false), "ID", "Name", product.CatID);
             return View(product);
