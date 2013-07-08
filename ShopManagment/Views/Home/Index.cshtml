@@ -2,13 +2,36 @@
     ViewBag.Title = "მაღაზიის მართვის სისტემა";
 }
 @section featured {
-   
+
     <section class="content-wrapper main-content clear-fix">
-          @if (!Request.IsAuthenticated){
+          @if (!Request.IsAuthenticated)
+          {
               @Html.Partial("~/Views/User/Login.cshtml")
-          } else { // aq kidev  2 else iqneba savaraudod danarcheni adminebistvis
-              @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
           }
-    </section>
+          else
+          {
+              <strong>@Html.Encode(User.Identity.Name)</strong>
+              int AdminRole = (int)Session["Role"];
+              if (AdminRole == 1)
+              {
+              @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
+              }
+              else if (AdminRole == 2)
+              {
+                  <b>ddasdasdas</b>
+                  @Html.Partial("~/Views/Home/ShopOperatorPage.cshtml")
+              }
+              else if (AdminRole == 3)
+              {
+              @Html.Partial("~/Views/Home/ShopManagerPage.cshtml")
+              }
+              else
+              {
+              @Html.Partial("~/Views/User/Login.cshtml");
+              }
+          }
+
 
 }
+</section>
+
