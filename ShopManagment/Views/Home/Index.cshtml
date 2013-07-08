@@ -9,17 +9,25 @@
               @Html.Partial("~/Views/User/Login.cshtml")
           }
           else
-          { // aq kidev  2 else iqneba savaraudod danarcheni adminebistvis
+          {
+              <strong>@Html.Encode(User.Identity.Name)</strong>
               int AdminRole = (int)Session["Role"];
               if (AdminRole == 1)
               {
-                  @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
+              @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
               }
               else if (AdminRole == 2)
               {
-                  @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
-              } else if(AdminRole == 3) {
-                  @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
+                  <b>ddasdasdas</b>
+                  @Html.Partial("~/Views/Home/ShopOperatorPage.cshtml")
+              }
+              else if (AdminRole == 3)
+              {
+              @Html.Partial("~/Views/Home/ShopManagerPage.cshtml")
+              }
+              else
+              {
+              @Html.Partial("~/Views/User/Login.cshtml");
               }
           }
 
@@ -27,4 +35,3 @@
 }
 </section>
 
-}
