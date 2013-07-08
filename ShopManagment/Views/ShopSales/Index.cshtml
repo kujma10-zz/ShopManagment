@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
+    float totalPrice = 0;
+    int totalQuantity = 0;
 }
 
 <h2>მაღაზიის მენეჯერის გვერდი</h2>
@@ -48,9 +50,11 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
+            @totalPrice += model.Price
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Quantity)
+            @totalQuantity += model.Quantity
         </td>
         <td>
             @(item.Quantity * item.Price)
@@ -64,3 +68,7 @@
 }
 
 </table>
+
+<h4>
+    მიმდინარე დღის გაყიდვები (ფასი/რაოდენობა): @totalPrice / @totalQuantity 
+</h4>
