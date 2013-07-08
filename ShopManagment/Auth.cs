@@ -10,6 +10,15 @@ namespace ShopManagment
 {
     public class AdminOnlyAttribute : ActionFilterAttribute
     {
+        public enum AdminRole
+        {
+            StorageOperator,
+            ShopOperator,
+            ShopManager
+        }
+
+        public AdminRole Role { get; set; }
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
@@ -18,6 +27,7 @@ namespace ShopManagment
             IPrincipal user = filterContext.HttpContext.User;
             if (user.Identity.IsAuthenticated)
             {
+                //if(user.IsInRole("admin"){
                 // aq adminis rolebi unda daiweros mogvianebit
                 isAuthorised = true;
 

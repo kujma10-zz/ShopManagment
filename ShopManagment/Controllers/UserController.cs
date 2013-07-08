@@ -26,8 +26,11 @@ namespace ShopManagment.Controllers
             {
                 if (user.IsValid(user.UserName, user.Password))
                 {
+                   // user.IsInRole("sd");
+                    user.Role = "StorageOperator";
+                    Session["Role"] = 1;
                     FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
-                    return RedirectToAction("Index", "ShopSales");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
