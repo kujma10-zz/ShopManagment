@@ -370,6 +370,7 @@
     <Content Include="Views\ShopSales\Create.cshtml" />
     <Content Include="Views\ShopSales\Edit.cshtml" />
     <Content Include="Views\ShopSales\Delete.cshtml" />
+    <Content Include="Views\Home\ShopOperatorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
