@@ -18,7 +18,7 @@
               else if (AdminRole == 2)
               {
                   @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
-              } else {
+              } else if(AdminRole == 3) {
                   @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
               }
           }

@@ -9,6 +9,8 @@ namespace ShopManagment.Controllers
 {
     public class UserController : Controller
     {
+        private ShopEntities db = new ShopEntities();
+
         //
         // GET: /User/
 
@@ -26,9 +28,7 @@ namespace ShopManagment.Controllers
             {
                 if (user.IsValid(user.UserName, user.Password))
                 {
-                   // user.IsInRole("sd");
-                    user.Role = "StorageOperator";
-                    Session["Role"] = 1;
+                    Session["Role"] = db.Admins.First(a=>a.Username.Equals(user.UserName) && a.Password.Equals(user.Password)).AdminType;
                     FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
                     return RedirectToAction("Index", "Home");
                 }
