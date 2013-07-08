@@ -1,5 +1,21 @@
-﻿@{
+﻿@using ShopManagment.Helpers
+@model List<ShopManagment.Controllers.TreeViewLocation>
+
+@{
     ViewBag.Title = "Index";
 }
 
-<h2>Under Construction</h2>
+<h2>მაღაზიის საწყობების ნაშთები</h2>
+
+
+@(Html.TreeView(Model)
+    .EmptyContent("No locations have been defined yet!")
+    .Children(m => m.ChildLocations)
+    .HtmlAttributes(new { id = "tree" })
+    .ChildrenHtmlAttributes(new { @class = "subItem" })
+    .ItemText(m => m.Name)
+    .ItemTemplate(
+        @<text>
+            <a href="#@item.Id">@item.Name</a>
+        </text>)
+)
