@@ -1,11 +1,7 @@
-﻿@using ShopManagment.Helpers
-@model List<ShopManagment.Controllers.TreeViewLocation>
+﻿@using $rootnamespace$.Helpers
+@model List<$rootnamespace$.Controllers.TreeViewLocation>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>მაღაზიის საწყობების ნაშთები</h2>
+<h2>TreeView</h2>
 
 
 @(Html.TreeView(Model)
@@ -19,3 +15,4 @@
             <a href="#@item.Id">@item.Name</a>
         </text>)
 )
+
