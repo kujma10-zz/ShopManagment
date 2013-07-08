@@ -16,7 +16,13 @@
             კატეგორია
         </div>
         <div class="editor-field">
-            @Html.DropDownList("CatID", String.Empty)
+            @Html.DropDownList(
+                "CatID", 
+                (IEnumerable<SelectListItem>)ViewData["Menu"], 
+                new { 
+                    @class = "list", 
+                    data_url = Url.Action("GetListValue", "ShopSales") 
+                })
             @Html.ValidationMessageFor(model => model.CatID)
         </div>
 
@@ -40,14 +46,14 @@
             ერთეულის ფასი
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.Price, new { @readonly = true }) 
+            @Html.TextBoxFor(model => model.Price, new { @readonly = true, id = "tb1" }) 
         </div>
 
         <div class="editor-label">
             საწყობში რაოდენობა
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.Quantity, new { @readonly = true }) 
+            @Html.TextBoxFor(model => model.Quantity, new { @readonly = true}) 
         </div>
 
         <div class="editor-label">
@@ -78,3 +84,20 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+    $(function() {
+        $('.list').change(function () {
+            var selectedValue = $(this).val();
+            $.ajax({
+                url: $(this).data('url'),
+                type: 'GET',
+                cache: false,
+                data: { value: selectedValue },
+                success: function (result) {
+                    $('#tb1').val(result.description);
+                }
+            });
+        });
+    });
+</script>

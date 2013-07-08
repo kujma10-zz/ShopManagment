@@ -61,7 +61,6 @@ namespace ShopManagment.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username", sale.AdminID);
             ViewBag.CatID = new SelectList(db.Categories, "ID", "Name", sale.CatID);
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", sale.ProductID);
             ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name", sale.StorageID);
@@ -133,6 +132,12 @@ namespace ShopManagment.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        public ActionResult GetListValue(String value)
+        {
+            Console.WriteLine(value);
+            return Json(new { description = "yle" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

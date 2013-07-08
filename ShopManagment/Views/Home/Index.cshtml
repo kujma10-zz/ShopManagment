@@ -11,7 +11,7 @@
           else
           {
               <strong>@Html.Encode(User.Identity.Name)</strong>
-              int AdminRole = (int)Session["Role"];
+              int AdminRole = 2/*(int)Session["Role"]*/;
               if (AdminRole == 1)
               {
               @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
@@ -19,7 +19,8 @@
               else if (AdminRole == 2)
               {
                   <b>ddasdasdas</b>
-                  @Html.Partial("~/Views/Home/ShopOperatorPage.cshtml")
+                  //@Html.Partial("~/Views/ShopSales/Index.cshtml")
+                @Html.ActionLink("მთავარი გვერდი","Index", "ShopSales", null, null)
               }
               else if (AdminRole == 3)
               {
