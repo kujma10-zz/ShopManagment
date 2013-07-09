@@ -104,8 +104,14 @@
 }
 
 <script type="text/javascript">
+    function clearFields() {
+        document.getElementById('Quantity').value = '';
+        document.getElementById('tb3').value = '';
+    }
+
     $(function() {
         $('.list').change(function () {
+            clearFields();
             var spinner1Val = $('#spinner1').val();
             var spinner2Val = $('#spinner2').val();
             var spinner3Val = $('#spinner3').val();
@@ -120,5 +126,22 @@
                 }
             });
         });
+    });
+
+    $('#Quantity').change(function () {
+        var minVal = 1;
+        var maxVal = $('#tb2').val();
+        var thisVal = $(this).val();
+
+        maxVal = maxVal=='' ? 0 : maxVal;
+        if (parseInt(thisVal) > parseInt(maxVal)) {
+            $(this).val(maxVal);
+        }
+        if (parseInt(thisVal) < parseInt(minVal)) {
+            $(this).val(minVal);
+        }
+
+        var price = parseFloat($(this).val()) * parseFloat($('#tb1').val());
+        $('#tb3').val(price);
     });
 </script>
