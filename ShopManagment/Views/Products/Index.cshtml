@@ -9,7 +9,8 @@
 <p>
     @Html.ActionLink("ახალი ტიპის დამატება", "Create")
 </p>
-<table>
+<table class ="cxrili">
+    <thead>
     <tr>
         <th>
             კატეგორია
@@ -28,7 +29,8 @@
         </th>
         <th></th>
     </tr>
-
+    </thead>
+    <tbody>
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -59,5 +61,5 @@
         </td>
     </tr>
 }
-
+</tbody>
 </table>

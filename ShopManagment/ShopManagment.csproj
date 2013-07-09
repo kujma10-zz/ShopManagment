@@ -179,7 +179,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SalesHistoryManagerController.cs" />
-    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShopSalesController.cs" />
     <Compile Include="Controllers\StoragesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -292,11 +291,10 @@
       <LastGenOutput>EntityModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -338,8 +336,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -365,9 +361,6 @@
     <Content Include="Views\Storages\Delete.cshtml" />
     <Content Include="Views\Storages\Move.cshtml" />
     <Content Include="Views\Storages\Purchase.cshtml" />
-    <Content Include="Views\Shop\Index.cshtml" />
-    <Content Include="Views\Shop\Sales.cshtml" />
-    <Content Include="Views\Shop\History.cshtml" />
     <Content Include="Views\ShopSales\Index.cshtml" />
     <Content Include="Views\ShopSales\Details.cshtml" />
     <Content Include="Views\ShopSales\Create.cshtml" />

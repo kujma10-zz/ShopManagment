@@ -5,47 +5,53 @@
 }
 
 <h2>პროდუქციის კატეგორიები</h2>
-
 <p>
     @Html.ActionLink("ახალი კატეგორიის დამატება", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            სახელი
-        </th>
-        <th>
-            აღწერა
-        </th>
-        <th>
-            სტატუსი
-        </th>
-        <th></th>
-    </tr>
+<div class="datagrid">
+    <table class ="cxrili">
+        <thead>
+            <tr>
+                <th>სახელი
+                </th>
+                <th>აღწერა
+                </th>
+                <th>სტატუსი
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+             @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descr)
+            </td>
+            <td>
+                @if (item.Disabled)
+                {
+                    @Html.Label("გაუქმებულია");
+                }
+                else
+                {
+                    @Html.Label("OK");
+                }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descr)
-        </td>
-        <td>
-            @if(item.Disabled){
-               @Html.Label("გაუქმებულია");
-            } else {
-               @Html.Label("OK");
-            }
-            
-        </td>
-        <td>
-            @if(!item.Disabled){
-                @Html.ActionLink("რედაქტირება", "Edit", new { id=item.ID }) <b>|</b>
-                @Html.ActionLink("გაუქმება", "Delete", new { id=item.ID })
-            }
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @if (!item.Disabled)
+                {
+                    @Html.ActionLink("რედაქტირება", "Edit", new { id = item.ID }) <b>|</b>
+                    @Html.ActionLink("გაუქმება", "Delete", new { id = item.ID })
+                }
+            </td>
+        </tr>
+    }
+        </tbody>
+    </table>
+</div>
 
-</table>

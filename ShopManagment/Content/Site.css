@@ -585,6 +585,10 @@ td {
 tr.pager td {
     padding: 0 0.25em 0 0;
 }
+.fg-button {
+     padding-left: 22px !important;
+    padding-right: 22px !important;
+}
 
 
 /********************

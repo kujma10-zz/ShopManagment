@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ShopManagment.Controllers
 {
-    [AdminOnly(Role = AdminOnlyAttribute.AdminRole.StorageOperator)]
+    //[Authorize(Roles = ("Admin"))]
     public class StoragesController : Controller
     {
         private ShopEntities db = new ShopEntities();
