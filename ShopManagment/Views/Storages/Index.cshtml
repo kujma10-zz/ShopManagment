@@ -11,55 +11,52 @@
     @Html.ActionLink("პროდუქციის გადატანა", "Move")
 </p>
 <div class="datagrid">
-<table class ="cxrili">
-    <thead>
-    <tr>
-        <th>
-            სახელი
-        </th>
-        <th>
-            აღწერა
-        </th>
-        <th>
-            მისამართი
-        </th>
-        <th>
-            გახსნის თარიღი
-        </th>
-        <th>
-            დახურვის თარიღი
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-@foreach (var item in Model) {
-    <tbody>
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Addr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Opened)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Closed)
-        </td>
-        <td>
-           @if (item.Closed == null){
-                @Html.ActionLink("შესყიდვა", "Purchase", new { id=item.ID }) <b>|</b>
-                @Html.ActionLink("რედაქტირება", "Edit", new { id=item.ID }) <b>|</b>
-                @Html.ActionLink("დახურვა", "Delete", new { id=item.ID })
-            }
-        </td>
-    </tr>
-    </tbody>
-}
+    <table class="cxrili">
+        <thead>
+            <tr>
+                <th>სახელი
+                </th>
+                <th>აღწერა
+                </th>
+                <th>მისამართი
+                </th>
+                <th>გახსნის თარიღი
+                </th>
+                <th>დახურვის თარიღი
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Addr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Opened)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Closed)
+                    </td>
+                    <td>
+                        @if (item.Closed == null)
+                        {
+                            @Html.ActionLink("შესყიდვა", "Purchase", new { id = item.ID }) <b>|</b>
+                            @Html.ActionLink("რედაქტირება", "Edit", new { id = item.ID }) <b>|</b>
+                            @Html.ActionLink("დახურვა", "Delete", new { id = item.ID })
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        }
 
-</table>
+    </table>
 </div>

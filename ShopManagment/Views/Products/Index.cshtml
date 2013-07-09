@@ -9,57 +9,57 @@
 <p>
     @Html.ActionLink("ახალი ტიპის დამატება", "Create")
 </p>
-<table class ="cxrili">
+<table class="cxrili">
     <thead>
-    <tr>
-        <th>
-            კატეგორია
-        </th>
-        <th>
-            პროდუქტი
-        </th>
-        <th>
-            აღწერა
-        </th>
-        <th>
-            ფასი
-        </th>
-        <th>
-            სტატუსი
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>კატეგორია
+            </th>
+            <th>პროდუქტი
+            </th>
+            <th>აღწერა
+            </th>
+            <th>ფასი
+            </th>
+            <th>სტატუსი
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @if(item.Disabled){
-               @Html.Label("გაუქმებულია");
-            } else {
-               @Html.Label("OK");
-            }
-            
-        </td>
-        <td>
-            @if(!item.Disabled){
-                @Html.ActionLink("რედაქტირება", "Edit", new { id=item.ID }) <b>|</b>
-                @Html.ActionLink("გაუქმება", "Delete", new { id=item.ID })
-            }
-        </td>
-    </tr>
-}
-</tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if (item.Disabled)
+                    {
+                        @Html.Label("გაუქმებულია");
+                    }
+                    else
+                    {
+                        @Html.Label("OK");
+                    }
+
+                </td>
+                <td>
+                    @if (!item.Disabled)
+                    {
+                        @Html.ActionLink("რედაქტირება", "Edit", new { id = item.ID }) <b>|</b>
+                        @Html.ActionLink("გაუქმება", "Delete", new { id = item.ID })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
