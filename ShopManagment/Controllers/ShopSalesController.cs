@@ -134,10 +134,35 @@ namespace ShopManagment.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult GetListValue(String value)
+        public ActionResult GetListValue(String category, String product, String storage)
         {
-            Console.WriteLine(value);
-            return Json(new { description = "yle" }, JsonRequestBehavior.AllowGet);
+            int categoryID = Convert.ToInt32(category);
+            int productID = Convert.ToInt32(product);
+            int storageID = Convert.ToInt32(storage);
+
+            var quantityResult = db.Balances.Where(b => b.CatID == categoryID && b.ProductID == productID && b.StorageID == storageID);
+            int quantity = 0;
+            if (quantityResult.Count() > 0)
+            {
+                quantity = quantityResult.First().Quantity;
+            }
+            else
+            {
+                quantity = 0;
+            }
+
+            var priceResult = db.Products.Where(p => p.ID == productID && p.CatID==categoryID);
+            double? price = 0;
+            if (priceResult.Count() > 0)
+            {
+                price = priceResult.First().Price;
+            }
+            else
+            {
+                price = 0;
+            }
+
+            return Json(new { price = price, quantity = quantity }, JsonRequestBehavior.AllowGet);
         }
     }
 }

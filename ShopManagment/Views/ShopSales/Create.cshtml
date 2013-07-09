@@ -20,9 +20,11 @@
                 "CatID", 
                 (IEnumerable<SelectListItem>)ViewData["Menu"], 
                 new { 
-                    @class = "list", 
+                    @class = "list",
+                    id = "spinner1",
                     data_url = Url.Action("GetListValue", "ShopSales") 
-                })
+                }
+            )
             @Html.ValidationMessageFor(model => model.CatID)
         </div>
 
@@ -30,7 +32,15 @@
             პროდუქტის ტიპი
         </div>
         <div class="editor-field">
-            @Html.DropDownList("ProductID", String.Empty)
+            @Html.DropDownList(
+                "ProductID", 
+                (IEnumerable<SelectListItem>)ViewData["Menu"], 
+                new { 
+                    @class = "list",
+                    id = "spinner2",
+                    data_url = Url.Action("GetListValue", "ShopSales") 
+                }
+            )
             @Html.ValidationMessageFor(model => model.ProductID)
         </div>
 
@@ -38,7 +48,15 @@
             საწყობი
         </div>
         <div class="editor-field">
-            @Html.DropDownList("StorageID", String.Empty)
+            @Html.DropDownList(
+                "StorageID", 
+                (IEnumerable<SelectListItem>)ViewData["Menu"], 
+                new { 
+                    @class = "list",
+                    id = "spinner3",
+                    data_url = Url.Action("GetListValue", "ShopSales") 
+                }
+            )
             @Html.ValidationMessageFor(model => model.StorageID)
         </div>
 
@@ -53,7 +71,7 @@
             საწყობში რაოდენობა
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.Quantity, new { @readonly = true}) 
+            @Html.TextBoxFor(model => model.Quantity, new { @readonly = true, id = "tb2" }) 
         </div>
 
         <div class="editor-label">
@@ -68,7 +86,7 @@
             ჯამური ფასი
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.Price, new { @readonly = true }) 
+            @Html.TextBoxFor(model => model.Price, new { @readonly = true, id = "tb3"  }) 
         </div>
 
         <p>
@@ -88,14 +106,17 @@
 <script type="text/javascript">
     $(function() {
         $('.list').change(function () {
-            var selectedValue = $(this).val();
+            var spinner1Val = $('#spinner1').val();
+            var spinner2Val = $('#spinner2').val();
+            var spinner3Val = $('#spinner3').val();
             $.ajax({
                 url: $(this).data('url'),
                 type: 'GET',
                 cache: false,
-                data: { value: selectedValue },
+                data: { category: spinner1Val, product: spinner2Val, storage: spinner3Val },
                 success: function (result) {
-                    $('#tb1').val(result.description);
+                    $('#tb1').val(result.price);
+                    $('#tb2').val(result.quantity);
                 }
             });
         });
