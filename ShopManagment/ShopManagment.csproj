@@ -174,9 +174,11 @@
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BalancesController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SalesHistoryManagerController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShopSalesController.cs" />
     <Compile Include="Controllers\StoragesController.cs" />
@@ -200,6 +202,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\MoveProducts.cs" />
     <Compile Include="Models\User.cs" />
@@ -371,6 +374,9 @@
     <Content Include="Views\ShopSales\Edit.cshtml" />
     <Content Include="Views\ShopSales\Delete.cshtml" />
     <Content Include="Views\Home\ShopOperatorPage.cshtml" />
+    <Content Include="Views\Balances\Index.cshtml" />
+    <Content Include="Views\SalesHistory\Index.cshtml" />
+    <Content Include="Views\Home\ShopManagerPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
