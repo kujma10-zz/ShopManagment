@@ -30,7 +30,7 @@ namespace ShopManagment.Models
         {
             using (var context = new ShopEntities())
             {
-                if (context.Admins.Any(a => a.Username == _username && a.Password == _password)) return true;
+                if (context.Admins.Any(a => a.Username == _username)) return true;
             }
             return false;
 

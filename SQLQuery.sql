@@ -1,12 +1,11 @@
 ﻿use shop;
+select * from webpages_Roles;
 
 CREATE TABLE Admins(
    ID INT IDENTITY NOT NULL PRIMARY KEY,
-   Username NVARCHAR(40) NOT NULL,
-   Password NVARCHAR(12) NOT NULL,
-   AdminType INT NOT NULL,
-   check(AdminType > 0 and AdminType < 4)
+   Username NVARCHAR(40) NOT NULL
 )
+
 
 CREATE TABLE Categories(
    ID INT IDENTITY NOT NULL PRIMARY KEY, 

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ShopManagment.Controllers
 {
-    [AdminOnly]
+    [Authorize(Roles = ("StorageOperator"))]
     public class ProductsController : Controller
     {
         private ShopEntities db = new ShopEntities();

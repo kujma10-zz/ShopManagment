@@ -16,20 +16,20 @@
     <script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.dataTables.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.min.js")" type="text/javascript"></script>
-<script>
-    $().ready(function () {
-        var oTable = $(".cxrili").dataTable({
-            "sScrollY": "200px",
-            "bJQueryUI": true,
-            "bSortClasses": true,
-            "sTitle": "Grade",
-            "sClass": "center",
-            "sPaginationType": "full_numbers"
+    <script>
+        $().ready(function () {
+            var oTable = $(".cxrili").dataTable({
+                "sScrollY": "200px",
+                "bJQueryUI": true,
+                "bSortClasses": true,
+                "sTitle": "Grade",
+                "sClass": "center",
+                "sPaginationType": "full_numbers"
+            });
         });
-    });
-</script>
+    </script>
 
-   
+
 </head>
 <body>
     <header>
@@ -52,7 +52,7 @@
                             <li>@Html.ActionLink("საწყობები", "Index", "Storages")</li>
                             <li>@Html.ActionLink("ნაშთები", "Index", "Balances")</li>
                         }
-                       
+
                     </ul>
                 </nav>
             </div>

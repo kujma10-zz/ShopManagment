@@ -28,7 +28,7 @@ namespace ShopManagment.Controllers
             {
                 if (user.IsValid(user.UserName, user.Password))
                 {
-                    Session["Role"] = db.Admins.First(a=>a.Username.Equals(user.UserName) && a.Password.Equals(user.Password)).AdminType;
+                    //Session["Role"] = db.Admins.First(a=>a.Username.Equals(user.UserName) && a.Password.Equals(user.Password)).AdminType;
                     FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
                     return RedirectToAction("Index", "Home");
                 }

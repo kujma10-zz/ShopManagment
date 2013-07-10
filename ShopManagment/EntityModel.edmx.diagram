@@ -13,12 +13,12 @@
         <AssociationConnector Association="ShopModel.FK__Balances__CatID__4AB81AF0" />
         <AssociationConnector Association="ShopModel.FK__Balances__Produc__4BAC3F29" />
         <AssociationConnector Association="ShopModel.FK__Balances__Quanti__49C3F6B7" />
-        <EntityTypeShape EntityType="ShopModel.Admin" Width="1.5" PointX="1.728338840291062" PointY="27.793830914326865" />
-        <EntityTypeShape EntityType="ShopModel.Sale" Width="1.5" PointX="6.7086556845850573" PointY="28.287499783694511" />
-        <AssociationConnector Association="ShopModel.FK__Sales__Returned__2DE6D218" />
-        <AssociationConnector Association="ShopModel.FK__Sales__CatID__2FCF1A8A" />
-        <AssociationConnector Association="ShopModel.FK__Sales__ProductID__30C33EC3" />
-        <AssociationConnector Association="ShopModel.FK__Sales__StorageID__2EDAF651" />
+        <EntityTypeShape EntityType="ShopModel.Admin" Width="1.5" PointX="0.58584937294286177" PointY="15.862470023269983" />
+        <EntityTypeShape EntityType="ShopModel.Sale" Width="1.5" PointX="7.9716179836409244" PointY="11.643287038264464" />
+        <AssociationConnector Association="ShopModel.FK__Sales__Returned__5BAD9CC8" />
+        <AssociationConnector Association="ShopModel.FK__Sales__CatID__5D95E53A" />
+        <AssociationConnector Association="ShopModel.FK__Sales__ProductID__5E8A0973" />
+        <AssociationConnector Association="ShopModel.FK__Sales__StorageID__5CA1C101" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

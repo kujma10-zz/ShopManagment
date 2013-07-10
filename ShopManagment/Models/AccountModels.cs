@@ -8,25 +8,18 @@ using System.Web.Security;
 
 namespace ShopManagment.Models
 {
-    public class UsersContext : DbContext
+    public class Admin : DbContext
     {
-        public UsersContext()
-            : base("DefaultConnection")
+        public Admin()
+            : base("ShopEntities")
         {
         }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 
-    [Table("UserProfile")]
-    public class UserProfile
-    {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-    }
 
+    
     public class RegisterExternalLoginModel
     {
         [Required]

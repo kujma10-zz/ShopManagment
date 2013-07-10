@@ -5,6 +5,7 @@ using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using ShopManagment.Models;
+using System.Web.Security;
 
 namespace ShopManagment.Filters
 {
@@ -25,20 +26,47 @@ namespace ShopManagment.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
-
+                Database.SetInitializer<ShopEntities>(null);
                 try
                 {
-                    using (var context = new UsersContext())
+                    using (var context = new ShopEntities())
                     {
                         if (!context.Database.Exists())
                         {
                             // Create the SimpleMembership database without Entity Framework migration schema
                             ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
                         }
+                        WebSecurity.InitializeDatabaseConnection("Membership", "Admins", "ID", "Username", autoCreateTables: true);
+                        if (!Roles.RoleExists("StorageOperator"))
+                            Roles.CreateRole("StorageOperator");
+                        if (!Roles.RoleExists("ShopOperator"))
+                            Roles.CreateRole("ShopOperator");
+                        if (!Roles.RoleExists("ShopManager"))
+                            Roles.CreateRole("ShopManager");
+                        if (!WebSecurity.UserExists("kote"))
+                            WebSecurity.CreateUserAndAccount("kote", "123456");
+                        if (!WebSecurity.UserExists("kikola"))
+                            WebSecurity.CreateUserAndAccount("kikola", "123456");
+                        if (!WebSecurity.UserExists("jilberta"))
+                            WebSecurity.CreateUserAndAccount("jilberta", "123456");
+                        if (!WebSecurity.UserExists("shota"))
+                            WebSecurity.CreateUserAndAccount("shota", "123456");
+                        if (!WebSecurity.UserExists("misha"))
+                            WebSecurity.CreateUserAndAccount("misha", "123456");
+                        if (!Roles.IsUserInRole("kote", "StorageOperator"))
+                            Roles.AddUserToRole("kote", "StorageOperator");
+                        if (!Roles.IsUserInRole("kikola", "ShopOperator"))
+                            Roles.AddUserToRole("kikola", "ShopOperator");
+                        if (!Roles.IsUserInRole("jilberta", "ShopManager"))
+                            Roles.AddUserToRole("jilberta", "ShopManager");
+                        if (!Roles.IsUserInRole("shota", "ShopOperator"))
+                            Roles.AddUserToRole("shota", "ShopOperator");
+                        if (!Roles.IsUserInRole("misha", "ShopOperator"))
+                            Roles.AddUserToRole("misha", "ShopOperator");
+
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+
                 }
                 catch (Exception ex)
                 {
