@@ -46,11 +46,24 @@
                         <li>@Html.ActionLink("მთავარი გვერდი", "Index", "Home")</li>
                         @if (Request.IsAuthenticated)
                         {
-                            
+                            if (User.IsInRole("StorageOperator"))
+                            {
                             <li>@Html.ActionLink("კატეგორიები", "Index", "Categories")</li>
                             <li>@Html.ActionLink("პროდუქტები", "Index", "Products")</li>
                             <li>@Html.ActionLink("საწყობები", "Index", "Storages")</li>
                             <li>@Html.ActionLink("ნაშთები", "Index", "Balances")</li>
+                            }
+                            else if (User.IsInRole("ShopOperator"))
+                            {
+                            <li>@Html.ActionLink("გაყიდვები", "Index", "ShopSales")</li>
+                            <li>@Html.ActionLink("ისტორია", "Index", "SalesHistory")</li>
+                            }
+                            else if (User.IsInRole("ShopManager"))
+                            {
+                            <li>@Html.ActionLink("ნაშთები", "Index", "Balances")</li>
+                            <li>@Html.ActionLink("ისტორია", "Index", "SalesHistory")</li>
+                            }
+
                         }
 
                     </ul>
