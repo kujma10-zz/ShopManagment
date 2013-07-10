@@ -12,35 +12,35 @@
           <EntitySet Name="Products" EntityType="ShopModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sales" EntityType="ShopModel.Store.Sales" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Storages" EntityType="ShopModel.Store.Storages" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Balances__CatID__17036CC0" Association="ShopModel.Store.FK__Balances__CatID__17036CC0">
+          <AssociationSet Name="FK__Balances__CatID__4316F928" Association="ShopModel.Store.FK__Balances__CatID__4316F928">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Produc__17F790F9" Association="ShopModel.Store.FK__Balances__Produc__17F790F9">
+          <AssociationSet Name="FK__Balances__Produc__440B1D61" Association="ShopModel.Store.FK__Balances__Produc__440B1D61">
             <End Role="Products" EntitySet="Products" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Quanti__160F4887" Association="ShopModel.Store.FK__Balances__Quanti__160F4887">
+          <AssociationSet Name="FK__Balances__Quanti__4222D4EF" Association="ShopModel.Store.FK__Balances__Quanti__4222D4EF">
             <End Role="Storages" EntitySet="Storages" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__Disabl__0B91BA14" Association="ShopModel.Store.FK__Products__Disabl__0B91BA14">
+          <AssociationSet Name="FK__Products__Disabl__3C69FB99" Association="ShopModel.Store.FK__Products__Disabl__3C69FB99">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sales__CatID__5D95E53A" Association="ShopModel.Store.FK__Sales__CatID__5D95E53A">
+          <AssociationSet Name="FK__Sales__CatID__4AB81AF0" Association="ShopModel.Store.FK__Sales__CatID__4AB81AF0">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sales__ProductID__5E8A0973" Association="ShopModel.Store.FK__Sales__ProductID__5E8A0973">
+          <AssociationSet Name="FK__Sales__ProductID__4BAC3F29" Association="ShopModel.Store.FK__Sales__ProductID__4BAC3F29">
             <End Role="Products" EntitySet="Products" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sales__Returned__5BAD9CC8" Association="ShopModel.Store.FK__Sales__Returned__5BAD9CC8">
+          <AssociationSet Name="FK__Sales__Returned__48CFD27E" Association="ShopModel.Store.FK__Sales__Returned__48CFD27E">
             <End Role="Admins" EntitySet="Admins" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sales__StorageID__5CA1C101" Association="ShopModel.Store.FK__Sales__StorageID__5CA1C101">
+          <AssociationSet Name="FK__Sales__StorageID__49C3F6B7" Association="ShopModel.Store.FK__Sales__StorageID__49C3F6B7">
             <End Role="Storages" EntitySet="Storages" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
@@ -107,7 +107,7 @@
           <Property Name="Opened" Type="datetime" Nullable="false" />
           <Property Name="Closed" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Balances__CatID__17036CC0">
+        <Association Name="FK__Balances__CatID__4316F928">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -119,7 +119,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Produc__17F790F9">
+        <Association Name="FK__Balances__Produc__440B1D61">
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -131,7 +131,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Quanti__160F4887">
+        <Association Name="FK__Balances__Quanti__4222D4EF">
           <End Role="Storages" Type="ShopModel.Store.Storages" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -143,7 +143,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__Disabl__0B91BA14">
+        <Association Name="FK__Products__Disabl__3C69FB99">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -155,7 +155,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sales__CatID__5D95E53A">
+        <Association Name="FK__Sales__CatID__4AB81AF0">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Sales" Type="ShopModel.Store.Sales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -167,7 +167,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sales__ProductID__5E8A0973">
+        <Association Name="FK__Sales__ProductID__4BAC3F29">
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="1" />
           <End Role="Sales" Type="ShopModel.Store.Sales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -179,7 +179,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sales__Returned__5BAD9CC8">
+        <Association Name="FK__Sales__Returned__48CFD27E">
           <End Role="Admins" Type="ShopModel.Store.Admins" Multiplicity="1" />
           <End Role="Sales" Type="ShopModel.Store.Sales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,7 +191,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sales__StorageID__5CA1C101">
+        <Association Name="FK__Sales__StorageID__49C3F6B7">
           <End Role="Storages" Type="ShopModel.Store.Storages" Multiplicity="1" />
           <End Role="Sales" Type="ShopModel.Store.Sales" Multiplicity="*" />
           <ReferentialConstraint>

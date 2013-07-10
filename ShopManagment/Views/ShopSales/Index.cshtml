@@ -2,73 +2,68 @@
 
 @{
     ViewBag.Title = "Index";
-    float totalPrice = 0;
+    double totalPrice = 0;
     int totalQuantity = 0;
 }
 
 <h2>მაღაზიის მენეჯერის გვერდი</h2>
 
-<input type="button" value="გაყიდვა" onclick="location.href='@Url.Action("Create", "ShopSales")'" />
-<table>
-    <tr>
-        <th>
-            Product category
-        </th>
-        <th>
-            Product type
-        </th>
-        <th>
-            Storage name
-        </th>
-        <th>
-            Date
-        </th>
-        <th>
-            Unit price
-        </th>
-        <th>
-            Quantity
-        </th>
-        <th>
-            Total
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Storage.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-            @totalPrice += model.Price
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-            @totalQuantity += model.Quantity
-        </td>
-        <td>
-            @(item.Quantity * item.Price)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
-
-<h4>
-    მიმდინარე დღის გაყიდვები (ფასი/რაოდენობა): @totalPrice / @totalQuantity 
+<input type="button" value="გაყიდვის გვერდი" onclick="location.href='@Url.Action("Create", "ShopSales")'" />
+<div class="datagrid">
+    <table class="cxrili">
+        <thead>
+            <tr>
+                <th>Product category
+                </th>
+                <th>Product type
+                </th>
+                <th>Storage name
+                </th>
+                <th>Date
+                </th>
+                <th>Unit price
+                </th>
+                <th>Quantity
+                </th>
+                <th>Total
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Storage.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                        @{totalPrice += item.Price;}
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                        @{totalQuantity += item.Quantity;
+                        }
+                    </td>
+                    <td>
+                        @(item.Quantity * item.Price)
+                    </td>
+                    <td>
+                        @Html.ActionLink("გაუქმება", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<h4>მიმდინარე დღის გაყიდვები (ფასი/რაოდენობა): @totalPrice / @totalQuantity
 </h4>

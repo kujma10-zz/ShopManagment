@@ -6,9 +6,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Objects;
+using System.Data.Linq;
 
 namespace ShopManagment.Controllers
 {
+    [Authorize(Roles = ("ShopOperator"))]
     public class ShopSalesController : Controller
     {
         private ShopEntities db = new ShopEntities();
@@ -54,8 +56,13 @@ namespace ShopManagment.Controllers
         [HttpPost]
         public ActionResult Create(Sale sale)
         {
+            var adminInfo = db.Admins.Where(a => a.Username.Equals(User.Identity.Name)).First();
+            sale.AdminID = adminInfo.ID;
+            sale.Date = DateTime.Now;
+            sale.Returned = false;
             if (ModelState.IsValid)
             {
+                affectStorage(sale);
                 db.Sales.Add(sale);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -65,6 +72,22 @@ namespace ShopManagment.Controllers
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", sale.ProductID);
             ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name", sale.StorageID);
             return View(sale);
+        }
+
+        private void affectStorage(Sale sale)
+        {
+            var a = db.Balances.Where(s=>s.StorageID == sale.StorageID && s.ProductID == sale.ProductID).First();
+            Balance b = a;
+            b.Quantity -= sale.Quantity;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
         }
 
         //
@@ -109,11 +132,29 @@ namespace ShopManagment.Controllers
         public ActionResult Delete(int id = 0)
         {
             Sale sale = db.Sales.Find(id);
+            sale.Returned = true;
+            returnToStorage(sale);
             if (sale == null)
             {
                 return HttpNotFound();
             }
-            return View(sale);
+            return RedirectToAction("Index");
+        }
+
+        private void returnToStorage(Sale sale)
+        {
+            var a = db.Balances.Where(s => s.StorageID == sale.StorageID && s.ProductID == sale.ProductID).First();
+            Balance b = a;
+            b.Quantity += sale.Quantity;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
         }
 
         //

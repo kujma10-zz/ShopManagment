@@ -6,7 +6,8 @@
 
 <h2>გაყიდვის ფორმა</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Create", "ShopSales", FormMethod.Post, new { id = "form" }))
+{
     @Html.ValidationSummary(true)
 
     <fieldset>
@@ -78,8 +79,7 @@
             გასაყიდი რაოდენობა
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Quantity)
-            @Html.ValidationMessageFor(model => model.Quantity)
+            @Html.EditorFor(model => model.Quantity, new {id = "tbjjkhjh21" })
         </div>
 
         <div class="editor-label">
@@ -90,7 +90,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="გაყიდვა" />
         </p>
     </fieldset>
 }
@@ -143,5 +143,11 @@
 
         var price = parseFloat($(this).val()) * parseFloat($('#tb1').val());
         $('#tb3').val(price);
+    });
+
+    $('#form').submit(function () {
+        var a = $('#Quantity').val();
+        $('#tb2').val(a);
+        return true;
     });
 </script>

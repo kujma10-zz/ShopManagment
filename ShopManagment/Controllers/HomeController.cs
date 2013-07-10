@@ -9,7 +9,7 @@ using WebMatrix.WebData;
 
 namespace ShopManagment.Controllers
 {
-
+    [InitializeSimpleMembership]
     public class HomeController : Controller
     {
    
