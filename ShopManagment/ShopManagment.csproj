@@ -181,7 +181,6 @@
     <Compile Include="Controllers\SalesHistoryManagerController.cs" />
     <Compile Include="Controllers\ShopSalesController.cs" />
     <Compile Include="Controllers\StoragesController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="EntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -204,7 +203,6 @@
     <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\MoveProducts.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
@@ -341,8 +339,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\User\Logout.cshtml" />
     <Content Include="Views\Home\StorageOperatorPage.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Categories\Details.cshtml" />
