@@ -42,7 +42,7 @@ namespace ShopManagment.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "მომხმარებლის სახელი ან პაროლი არასწორია!");
             return View(model);
         }
 

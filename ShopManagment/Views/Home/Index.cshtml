@@ -10,16 +10,16 @@
           }
           else
           {
-              int AdminRole = 2/*(int)Session["Role"]*/;
-              if (AdminRole == 1)
+             
+              if (User.IsInRole("StorageOperator"))
               {
               @Html.Partial("~/Views/Home/StorageOperatorPage.cshtml")
               }
-              else if (AdminRole == 2)
+              else if (User.IsInRole("ShopOperator"))
               {
               @Html.Partial("~/Views/Home/ShopOperatorPage.cshtml")
               }
-              else if (AdminRole == 3)
+              else if (User.IsInRole("ShopManager"))
               {
               @Html.Partial("~/Views/Home/ShopManagerPage.cshtml")
               }
