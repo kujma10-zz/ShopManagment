@@ -12,6 +12,7 @@ namespace ShopManagment.Controllers
     {
         private ShopEntities db = new ShopEntities();
 
+
         //
         // GET: /ShopHistory/
 

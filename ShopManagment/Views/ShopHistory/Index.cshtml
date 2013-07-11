@@ -2,74 +2,89 @@
 
 @{
     ViewBag.Title = "Index";
+    double totalPrice = 0;
+    int totalQuantity = 0;
 }
 
-<h2>Index</h2>
+<h2>გაყიდვების ისტორია</h2>
+<input type="text" class="dateselector">
+<div class="datagrid">
+    <table class="cxrili">
+        <thead>
+            <tr>
+                <th>კატეგორია
+                </th>
+                <th>ტიპი
+                </th>
+                <th>საწყობი
+                </th>
+                <th>თარიღი
+                </th>
+                <th>ფასი
+                </th>
+                <th>რაოდენობა
+                </th>
+                <th>ჯამური ფაი
+                </th>
+                <th>დაბრუნებული
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Storage.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                        @{if (item.Returned != true)
+                          {
+                              totalQuantity += item.Quantity;
+                          }}
+                    </td>
+                    <td>
+                        @(item.Quantity * item.Price)
+                        @{if (item.Returned != true)
+                          {
+                              totalPrice += item.Quantity * item.Price;
+                          }}
+                    </td>
+                    <td>
+                        @{
+                          if (item.Returned == true)
+                          {
+                            @("X")
+                          }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Admin.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Storage.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Returned)
-        </th>
-        <th></th>
-    </tr>
+    </table>
+</div>
+<h4>მიმდინარე დღის გაყიდვები (ფასი/რაოდენობა): @totalPrice / @totalQuantity
+</h4>
+<script>
+    $(document).ready(function () {
+        $('#dateselector').datepicker("setDate", new Date(2008, 9, 03));
+    });
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Admin.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Storage.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Returned)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+    $('#dateselector').click(function () {
+        alert("asdasd");
+    });
+</script>

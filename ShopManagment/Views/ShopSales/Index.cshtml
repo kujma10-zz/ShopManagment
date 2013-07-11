@@ -8,24 +8,24 @@
 
 <h2>მაღაზიის მენეჯერის გვერდი</h2>
 
-<input type="button" value="გაყიდვის გვერდი" onclick="location.href='@Url.Action("Create", "ShopSales")'" />
+<input type="button" value="გაყიდვის გვერდი" onclick="location.href='@Url.Action("Create", "ShopSales")    '" />
 <div class="datagrid">
     <table class="cxrili">
         <thead>
             <tr>
-                <th>Product category
+                <th>კატეგორია
                 </th>
-                <th>Product type
+                <th>ტიპი
                 </th>
-                <th>Storage name
+                <th>საწყობი
                 </th>
-                <th>Date
+                <th>თარიღი
                 </th>
-                <th>Unit price
+                <th>ფასი
                 </th>
-                <th>Quantity
+                <th>რაოდენობა
                 </th>
-                <th>Total
+                <th>ჯამური ფაი
                 </th>
                 <th>დაბრუნებული
                 </th>
@@ -59,22 +59,25 @@
                     </td>
                     <td>
                         @(item.Quantity * item.Price)
-                        @{if(item.Returned!=true){
+                        @{if (item.Returned != true)
+                          {
                               totalPrice += item.Quantity * item.Price;
                           }}
                     </td>
                     <td>
                         @{
-                            if(item.Returned==true){
-                               @("X")
-                            }
+                          if (item.Returned == true)
+                          {
+                            @("X")
+                          }
                         }
                     </td>
                     <td>
                         @{
-                            if(item.Returned!=true){
-                                @Html.ActionLink("გაუქმება", "Delete", new { id = item.ID })
-                            }
+                          if (item.Returned != true)
+                          {
+                            @Html.ActionLink("გაუქმება", "Delete", new { id = item.ID })
+                          }
                         }
                     </td>
                 </tr>
