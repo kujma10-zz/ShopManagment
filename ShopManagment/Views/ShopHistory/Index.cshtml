@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShopManagment.Sale>
+﻿@model ShopManagment.Models.History
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,32 @@
 }
 
 <h2>გაყიდვების ისტორია</h2>
-<input type="text" class="dateselector">
+
+
+@using (Html.BeginForm("Index", "ShopHistory"))
+{
+    @Html.ValidationSummary(true)
+    <div class="editor-label">
+        @Html.LabelFor(model => model.FromDate)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.FromDate)
+        @Html.ValidationMessageFor(model => model.FromDate)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ToDate)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.ToDate)
+        @Html.ValidationMessageFor(model => model.ToDate)
+    </div>
+    <input type="submit" value="ძებნა" />
+}
+
+
+
+
+
 <div class="datagrid">
     <table class="cxrili">
         <thead>
@@ -31,7 +56,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.sale)
             {
                 <tr>
                     <td>

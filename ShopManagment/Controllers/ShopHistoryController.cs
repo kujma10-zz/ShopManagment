@@ -18,8 +18,26 @@ namespace ShopManagment.Controllers
 
         public ActionResult Index()
         {
-            var sales = db.Sales.Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
-            return View(sales.ToList());
+            Models.History history = new Models.History();
+            history.FromDate = new DateTime(05/02/2012);
+            history.ToDate = DateTime.Now;
+            history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            return View(history);
+        }
+
+        //
+        // POST: /ShopHistory/
+
+        [HttpPost]
+        public ActionResult Index(Models.History history)
+        {
+            if (ModelState.IsValid)
+            {
+                history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+                return View(history);
+            }
+
+            return View(history);
         }
 
         //

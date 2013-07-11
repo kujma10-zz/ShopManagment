@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\History.cs" />
     <Compile Include="Models\MoveProducts.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
@@ -370,6 +371,7 @@
     <Content Include="Views\ShopHistory\Delete.cshtml" />
     <Content Include="Views\Categories\Restore.cshtml" />
     <Content Include="Views\Products\Restore.cshtml" />
+    <Content Include="Views\ShopHistory\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
