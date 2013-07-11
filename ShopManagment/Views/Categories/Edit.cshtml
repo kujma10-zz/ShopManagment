@@ -1,10 +1,10 @@
 ﻿@model ShopManagment.Category
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "კატეგორიის რედაქტირება";
 }
 
-<h2>Edit</h2>
+<h2>კატეგორიის რედაქტირება</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -31,13 +31,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="დამახსოვრება" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("უკან", "Index")
 </div>
 
 @section Scripts {

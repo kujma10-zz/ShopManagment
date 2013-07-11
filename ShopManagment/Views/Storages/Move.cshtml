@@ -68,3 +68,14 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script type="text/javascript">
+    $('#Quantity').change(function () {
+        var minVal = 1;
+        var thisVal = $(this).val();
+        if (parseInt(thisVal) < parseInt(minVal)) {
+            $(this).val(minVal);
+        }
+    });
+
+</script>
+

@@ -14,7 +14,6 @@ using ShopManagment.Models;
 namespace ShopManagment.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //

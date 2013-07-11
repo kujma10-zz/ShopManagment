@@ -1,12 +1,12 @@
 ﻿@model ShopManagment.Category
 
 @{
-    ViewBag.Title = "კატეგორიის გაუქმება";
+    ViewBag.Title = "Restore";
 }
 
-<h2>კატეგორიის გაუქმება</h2>
+<h2>აღდგენა</h2>
 
-<h3>დარმწუნებული ხართ, რომ გინდათ ამ კატეგორიის გაუქმება?</h3>
+<h3>დარწმუნებული ხართ, რომ გინდათ ამ კატეგორიის აღდგენა?</h3>
 <fieldset>
     <legend>Category</legend>
 
@@ -27,7 +27,7 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true);
     <p>
-        <input type="submit" value="გაუქმება" /> |
+        <input type="submit" value="აღდგენა" /> |
         @Html.ActionLink("უკან", "Index")
     </p>
 }
