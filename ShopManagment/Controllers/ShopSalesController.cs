@@ -21,7 +21,8 @@ namespace ShopManagment.Controllers
         public ActionResult Index()
         {
             DateTime today = Convert.ToDateTime(DateTime.Today).Date;
-            return View(db.Sales.Where(s => EntityFunctions.TruncateTime(s.Date) == today).ToList());
+            var adminInfo = db.Admins.Where(a => a.Username.Equals(User.Identity.Name)).First();
+            return View(db.Sales.Where(s => EntityFunctions.TruncateTime(s.Date) == today && s.AdminID==adminInfo.ID).ToList());
         }
 
         //

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShopManagment.Sale>
+﻿@model ShopManagment.Models.History
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,21 @@
 }
 
 <h2>გაყიდვების ისტორია</h2>
-<input type="text" class="dateselector">
+
+
+@using (Html.BeginForm("Index", "ShopHistory"))
+{
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(model => model.FromDate)
+    @Html.EditorFor(model => model.FromDate)
+    @Html.ValidationMessageFor(model => model.FromDate)
+    @Html.LabelFor(model => model.ToDate)
+    @Html.EditorFor(model => model.ToDate)
+    @Html.ValidationMessageFor(model => model.ToDate)
+    <input type="submit" value="ძებნა" />
+}
+
+
 <div class="datagrid">
     <table class="cxrili">
         <thead>
@@ -24,14 +38,14 @@
                 </th>
                 <th>რაოდენობა
                 </th>
-                <th>ჯამური ფაი
+                <th>ჯამური ფასი
                 </th>
                 <th>დაბრუნებული
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.sale)
             {
                 <tr>
                     <td>
@@ -77,14 +91,6 @@
 
     </table>
 </div>
-<h4>მიმდინარე დღის გაყიდვები (ფასი/რაოდენობა): @totalPrice / @totalQuantity
+<h4>ამ შუალედის გაყიდვები (ფასი/რაოდენობა): @totalPrice / @totalQuantity
 </h4>
-<script>
-    $(document).ready(function () {
-        $('#dateselector').datepicker("setDate", new Date(2008, 9, 03));
-    });
 
-    $('#dateselector').click(function () {
-        alert("asdasd");
-    });
-</script>

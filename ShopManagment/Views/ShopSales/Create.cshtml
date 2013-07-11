@@ -79,7 +79,8 @@
             გასაყიდი რაოდენობა
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Quantity, new {id = "tbjjkhjh21" })
+            @*@Html.EditorFor(model => model.Quantity, new {id = "tbjjkhjh21" })*@
+            <input type="text" id="Quantity" />
         </div>
 
         <div class="editor-label">
@@ -146,8 +147,14 @@
     });
 
     $('#form').submit(function () {
-        var a = $('#Quantity').val();
-        $('#tb2').val(a);
+        var tb1 = $('#tb1').val();
+        var tb2 = $('#tb2').val();
+        var tb21 = $('#Quantity').val();
+        var tb3 = $('#tb3').val();
+        if ((tb1 == '' || tb1 == 0) || (tb2 == '' || tb2 == 0) || (tb21 == '' || (tb21 == 1 && tb3 == 'NaN')) || (tb3 == '' || tb3 == 'NaN')) {
+            return false;
+        }
+        $('#tb2').val(tb21);
         return true;
     });
 </script>

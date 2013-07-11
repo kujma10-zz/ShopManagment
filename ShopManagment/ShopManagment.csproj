@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\History.cs" />
     <Compile Include="Models\MoveProducts.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
