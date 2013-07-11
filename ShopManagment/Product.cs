@@ -14,6 +14,7 @@ namespace ShopManagment
 
 using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
 public partial class Product
 {
@@ -31,7 +32,8 @@ public partial class Product
     public int ID { get; set; }
 
     public int CatID { get; set; }
-
+    [Required(AllowEmptyStrings = true)]
+    [DisplayFormat(ConvertEmptyStringToNull = false)]
     public string Name { get; set; }
 
     public string Descr { get; set; }
