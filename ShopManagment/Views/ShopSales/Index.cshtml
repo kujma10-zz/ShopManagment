@@ -27,6 +27,8 @@
                 </th>
                 <th>Total
                 </th>
+                <th>დაბრუნებული
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -47,18 +49,33 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Price)
-                        @{totalPrice += item.Price;}
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Quantity)
-                        @{totalQuantity += item.Quantity;
-                        }
+                        @{if (item.Returned != true)
+                          {
+                              totalQuantity += item.Quantity;
+                          }}
                     </td>
                     <td>
                         @(item.Quantity * item.Price)
+                        @{if(item.Returned!=true){
+                              totalPrice += item.Quantity * item.Price;
+                          }}
                     </td>
                     <td>
-                        @Html.ActionLink("გაუქმება", "Delete", new { id = item.ID })
+                        @{
+                            if(item.Returned==true){
+                               @("X")
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            if(item.Returned!=true){
+                                @Html.ActionLink("გაუქმება", "Delete", new { id = item.ID })
+                            }
+                        }
                     </td>
                 </tr>
             }

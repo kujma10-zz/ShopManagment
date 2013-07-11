@@ -179,6 +179,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SalesHistoryManagerController.cs" />
+    <Compile Include="Controllers\ShopHistoryController.cs" />
     <Compile Include="Controllers\ShopSalesController.cs" />
     <Compile Include="Controllers\StoragesController.cs" />
     <Compile Include="EntityModel.Context.cs">
@@ -362,6 +363,11 @@
     <Content Include="Views\Balances\Index.cshtml" />
     <Content Include="Views\SalesHistory\Index.cshtml" />
     <Content Include="Views\Home\ShopManagerPage.cshtml" />
+    <Content Include="Views\ShopHistory\Index.cshtml" />
+    <Content Include="Views\ShopHistory\Details.cshtml" />
+    <Content Include="Views\ShopHistory\Create.cshtml" />
+    <Content Include="Views\ShopHistory\Edit.cshtml" />
+    <Content Include="Views\ShopHistory\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
