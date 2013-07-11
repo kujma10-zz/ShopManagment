@@ -12,25 +12,14 @@
 @using (Html.BeginForm("Index", "ShopHistory"))
 {
     @Html.ValidationSummary(true)
-    <div class="editor-label">
-        @Html.LabelFor(model => model.FromDate)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.FromDate)
-        @Html.ValidationMessageFor(model => model.FromDate)
-    </div>
-    <div class="editor-label">
-        @Html.LabelFor(model => model.ToDate)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.ToDate)
-        @Html.ValidationMessageFor(model => model.ToDate)
-    </div>
+    @Html.LabelFor(model => model.FromDate)
+    @Html.EditorFor(model => model.FromDate)
+    @Html.ValidationMessageFor(model => model.FromDate)
+    @Html.LabelFor(model => model.ToDate)
+    @Html.EditorFor(model => model.ToDate)
+    @Html.ValidationMessageFor(model => model.ToDate)
     <input type="submit" value="ძებნა" />
 }
-
-
-
 
 
 <div class="datagrid">
@@ -49,7 +38,7 @@
                 </th>
                 <th>რაოდენობა
                 </th>
-                <th>ჯამური ფაი
+                <th>ჯამური ფასი
                 </th>
                 <th>დაბრუნებული
                 </th>
@@ -102,14 +91,6 @@
 
     </table>
 </div>
-<h4>მიმდინარე დღის გაყიდვები (ფასი/რაოდენობა): @totalPrice / @totalQuantity
+<h4>ამ შუალედის გაყიდვები (ფასი/რაოდენობა): @totalPrice / @totalQuantity
 </h4>
-<script>
-    $(document).ready(function () {
-        $('#dateselector').datepicker("setDate", new Date(2008, 9, 03));
-    });
 
-    $('#dateselector').click(function () {
-        alert("asdasd");
-    });
-</script>

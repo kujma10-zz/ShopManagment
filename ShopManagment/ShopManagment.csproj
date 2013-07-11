@@ -371,7 +371,6 @@
     <Content Include="Views\ShopHistory\Delete.cshtml" />
     <Content Include="Views\Categories\Restore.cshtml" />
     <Content Include="Views\Products\Restore.cshtml" />
-    <Content Include="Views\ShopHistory\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
