@@ -47,6 +47,8 @@
                         {
                             @Html.ActionLink("რედაქტირება", "Edit", new { id = item.ID }) <b>|</b>
                             @Html.ActionLink("გაუქმება", "Delete", new { id = item.ID })
+                        } else {
+                            @Html.ActionLink("აღდგენა", "Restore", new { id = item.ID })
                         }
                     </td>
                 </tr>

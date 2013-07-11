@@ -50,7 +50,7 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool exists = db.Categories.Where(a => a.Name.Equals(category.Name)).ToList().Count()!=0;
+                bool exists = db.Categories.Where(a => a.Name.Equals(category.Name)).ToList().Count() != 0;
                 if (!exists)
                 {
                     db.Categories.Add(category);
@@ -84,7 +84,7 @@ namespace ShopManagment.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool exists = db.Categories.Where(a => a.Name.Equals(category.Name) && a.ID != category.ID).ToList().Count()!=0;
+                bool exists = db.Categories.Where(a => a.Name.Equals(category.Name) && a.ID != category.ID).ToList().Count() != 0;
                 if (!exists)
                 {
                     db.Entry(category).State = EntityState.Modified;
@@ -127,8 +127,34 @@ namespace ShopManagment.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
+
         }
+
+        //
+        // GET: /Categories/Restore/5
+
+        public ActionResult Restore(int id = 0)
+        {
+            Category category = db.Categories.Find(id);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return View(category);
+        }
+
+        //
+        // POST: /Categories/Restore/5
+
+        [HttpPost, ActionName("Restore")]
+        public ActionResult RestoreConfirmed(int id)
+        {
+            Category category = db.Categories.Find(id);
+            category.Disabled = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         protected override void Dispose(bool disposing)
         {

@@ -1,0 +1,33 @@
+﻿@model ShopManagment.Category
+
+@{
+    ViewBag.Title = "Restore";
+}
+
+<h2>აღდგენა</h2>
+
+<h3>Are you sure you want to restore this?</h3>
+<fieldset>
+    <legend>Category</legend>
+
+    <div class="display-label">
+         სახელი:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         აღწერა:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descr)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true);
+    <p>
+        <input type="submit" value="აღდგენა" /> |
+        @Html.ActionLink("უკან", "Index")
+    </p>
+}
