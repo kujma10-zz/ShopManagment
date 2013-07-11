@@ -11,12 +11,12 @@ namespace ShopManagment.Models
         public IEnumerable<Sale> sale { get; set; }
         [Required(ErrorMessage = "Date is required")]
         [Display(Name = "From")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+       // [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
         [Required(ErrorMessage = "Date is required")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+      //  [DataType(DataType.Date)]
         [Display(Name = "To")]
         public DateTime ToDate { get; set; }
 

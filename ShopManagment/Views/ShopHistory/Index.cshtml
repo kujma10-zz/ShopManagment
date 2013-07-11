@@ -11,14 +11,17 @@
 
 @using (Html.BeginForm("Index", "ShopHistory"))
 {
-    @Html.ValidationSummary(true)
-    @Html.LabelFor(model => model.FromDate)
-    @Html.EditorFor(model => model.FromDate)
-    @Html.ValidationMessageFor(model => model.FromDate)
-    @Html.LabelFor(model => model.ToDate)
-    @Html.EditorFor(model => model.ToDate)
-    @Html.ValidationMessageFor(model => model.ToDate)
-    <input type="submit" value="ძებნა" />
+    <div>
+        @Html.ValidationSummary(true)
+        @Html.LabelFor(model => model.FromDate)
+        @Html.EditorFor(model => model.FromDate)
+        @Html.ValidationMessageFor(model => model.FromDate)
+        @Html.LabelFor(model => model.ToDate)
+        @Html.EditorFor(model => model.ToDate)
+        @Html.ValidationMessageFor(model => model.ToDate)
+        <input type="submit" value="ძებნა" />
+    </div>
+  
 }
 
 
@@ -99,9 +102,9 @@
         var curDate = $.datepicker.formatDate('mm/dd/yy', new Date());
         $("#FromDate").datepicker({
             dateFormat: "yy-mm-dd"
-        }).datepicker("setDate", "-3");
+        });
         $("#ToDate").datepicker({
             dateFormat: "yy-mm-dd"
-        }).datepicker("setDate", "0");
+        });
     });
 </script>

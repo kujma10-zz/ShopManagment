@@ -56,12 +56,12 @@
                             else if (User.IsInRole("ShopOperator"))
                             {
                             <li>@Html.ActionLink("გაყიდვები", "Index", "ShopSales")</li>
-                            <li>@Html.ActionLink("ისტორია", "Index", "SalesHistory")</li>
+                            <li>@Html.ActionLink("ისტორია", "Index", "ShopHistory")</li>
                             }
                             else if (User.IsInRole("ShopManager"))
                             {
                             <li>@Html.ActionLink("ნაშთები", "Index", "Balances")</li>
-                            <li>@Html.ActionLink("ისტორია", "Index", "SalesHistory")</li>
+                            <li>@Html.ActionLink("ისტორია", "Index", "ShopHistory")</li>
                             }
 
                         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopManagment.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -18,10 +19,10 @@ namespace ShopManagment.Controllers
 
         public ActionResult Index()
         {
-            Models.History history = new Models.History();
-            history.FromDate = new DateTime(05 / 02 / 2012);
-            history.ToDate = DateTime.Now;
-            history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            History history = new History();
+            history.FromDate = DateTime.Now.AddDays(-3);
+            history.ToDate = DateTime.Now.Date;
+            history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
             return View(history);
         }
 
@@ -29,9 +30,9 @@ namespace ShopManagment.Controllers
         // POST: /ShopHistory/
 
         [HttpPost]
-        public ActionResult Index(Models.History history)
+        public ActionResult Index(History history)
         {
-            history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
             return View(history);
 
         }
