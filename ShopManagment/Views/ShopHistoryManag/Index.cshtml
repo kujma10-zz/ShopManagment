@@ -19,11 +19,12 @@
     @Html.EditorFor(model => model.ToDate)
     @Html.ValidationMessageFor(model => model.ToDate)
  //   @Html.DropDownList("ID", (IEnumerable<SelectListItem>) ViewBag.ShopOperators)
+    @Html.DropDownList("ShopOperators", (IEnumerable<SelectListItem>)ViewBag.ShopOperators, "-- Yvela --")
     
     <input type="submit" value="ძებნა" />
 }
 
-@Html.DropDownList("ShopOperators", (IEnumerable<SelectListItem>)ViewBag.ShopOperators, "-- Yvela --")
+
 
 
 <div class="datagrid">
