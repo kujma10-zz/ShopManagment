@@ -18,8 +18,12 @@
     @Html.LabelFor(model => model.ToDate)
     @Html.EditorFor(model => model.ToDate)
     @Html.ValidationMessageFor(model => model.ToDate)
+ //   @Html.DropDownList("ID", (IEnumerable<SelectListItem>) ViewBag.ShopOperators)
+    @Html.DropDownList("mdaa", ViewData["mdaa"] as SelectList, "-- Yvela --")
     <input type="submit" value="ძებნა" />
 }
+
+
 
 
 <div class="datagrid">
