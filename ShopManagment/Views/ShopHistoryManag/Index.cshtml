@@ -18,16 +18,14 @@
     @Html.LabelFor(model => model.ToDate)
     @Html.EditorFor(model => model.ToDate)
     @Html.ValidationMessageFor(model => model.ToDate)
- //   @Html.DropDownList("ID", (IEnumerable<SelectListItem>) ViewBag.ShopOperators)
-    
-    //@Html.DropDownList("ShopOperators", "-- Yvela --")
+
     <div class="editor-label">
-            @Html.LabelFor(model => model.AdminID, "Shop Operator")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("AdminID", "--Yvela--")
-            @Html.ValidationMessageFor(model => model.AdminID)
-        </div>
+          @Html.LabelFor(model => model.AdminID, "Shop Operator")
+    </div>
+    <div class="editor-field">
+          @Html.DropDownList("AdminID", "--Yvela--")
+    </div>
+    
     <input type="submit" value="ძებნა" />
 }
 
@@ -106,3 +104,14 @@
 <h4>ამ შუალედის გაყიდვები (ფასი/რაოდენობა): @totalPrice / @totalQuantity
 </h4>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        var curDate = $.datepicker.formatDate('mm/dd/yy', new Date());
+        $("#FromDate").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+        $("#ToDate").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
+</script>

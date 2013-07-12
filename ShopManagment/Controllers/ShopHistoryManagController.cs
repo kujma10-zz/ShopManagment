@@ -43,7 +43,15 @@ namespace ShopManagment.Views.ShopHistoryManag
         [HttpPost]
         public ActionResult Index(Models.History history)
         {
-            history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate && a.AdminID == history.AdminID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            if (history.AdminID == 0)
+            {
+                history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            }
+            else
+            {
+                history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate && a.AdminID == history.AdminID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            }
+            
             ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username");
             return View(history);
 
