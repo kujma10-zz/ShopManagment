@@ -23,17 +23,22 @@ namespace ShopManagment.Views.ShopHistoryManag
             history.ToDate = DateTime.Now;
             history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
 
-         //   var query = db.Admins.Select(c => new { c.ID, c.Username });
-       //     foreach (var a in query)
-       //     {
-       //         var b = (from roles in db.web)
-       //     }
-       //     ViewBag.ShopOperators = new SelectList(query.AsEnumerable(), "ID", "Username");
-            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username");
+/*
+            List<SelectListItem> items = new List<SelectListItem>();
+            var query = db.webpages_UsersInRoles.Select(c => new { c.UserID, c.RoleID });
+            foreach (var a in query)
+            {
+                if (a.RoleID == 2)   // Shop Operator - is RoleID = 2 s ?
+                {
+                    var b = (from roles in db.Admins where roles.ID == a.UserID select roles).toList();
+                    SelectListItem listItem = new SelectListItem { Value = b.ID.ToString(), Text = b.Username };
+                    items.Add(listItem);
+                }
+            }
 
-           // history.operators = new SelectList(db.Admins.Select(a => new { a.ID, a.Username }), "ID", "Username");
-            //ViewBag.ShopOperators = history.operators;
-            
+            ViewBag.AdminID = new SelectList(items, "Value", "Text");
+       */
+            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username");
             return View(history);
         }
 
@@ -51,10 +56,27 @@ namespace ShopManagment.Views.ShopHistoryManag
             {
                 history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate && a.AdminID == history.AdminID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
             }
-            
-            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username");
-            return View(history);
 
+       /*
+            List<SelectListItem> items = new List<SelectListItem>();
+            var query = db.webpages_UsersInRoles.Select(c => new { c.UserID, c.RoleID });
+            foreach (var a in query)
+            {
+                if (a.RoleID == 2)   // Shop Operator - is RoleID = 2 s ?
+                {
+                    var b = (from roles in db.Admins where roles.ID == a.UserID select roles).toList();
+                    SelectListItem listItem = new SelectListItem { Value = b.ID.ToString(), Text = b.Username };
+                    items.Add(listItem);
+                }
+            }
+
+            ViewBag.AdminID = new SelectList(items, "Value", "Text");
+       */
+
+
+            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username");
+
+            return View(history);
         }
 
         //
