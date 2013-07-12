@@ -26,12 +26,12 @@ namespace ShopManagment.Controllers
             if (User.IsInRole("ShopManager"))
             {
                 ViewBag.AdminID = new SelectList(db.Admins.Join(db.webpages_UsersInRoles, a => a.ID, b => b.UserId, (a, b) => new { a.ID, a.Username, b.RoleId }).Where(p => p.RoleId == 2), "ID", "Username");
-                history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+                history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
             }
             else
             {
                 int UserID = GetUserID();
-                history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate && a.AdminID == UserID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+                history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate && a.AdminID == UserID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
             }
 
             return View(history);
@@ -59,7 +59,7 @@ namespace ShopManagment.Controllers
             else
             {
                 int UserID = GetUserID();
-                history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate && a.AdminID == UserID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+                history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate && a.AdminID == UserID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
             }
 
             return View(history);
