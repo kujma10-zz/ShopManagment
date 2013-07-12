@@ -19,6 +19,8 @@
         <AssociationConnector Association="ShopModel.FK__Sales__CatID__5D95E53A" />
         <AssociationConnector Association="ShopModel.FK__Sales__ProductID__5E8A0973" />
         <AssociationConnector Association="ShopModel.FK__Sales__StorageID__5CA1C101" />
+        <EntityTypeShape EntityType="ShopModel.webpages_UsersInRoles" Width="1.5" PointX="10.209745488227227" PointY="3.9827782381245767" />
+        <AssociationConnector Association="ShopModel.fk_UserId" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

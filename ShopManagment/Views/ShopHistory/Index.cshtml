@@ -19,6 +19,12 @@
         @Html.LabelFor(model => model.ToDate)
         @Html.EditorFor(model => model.ToDate)
         @Html.ValidationMessageFor(model => model.ToDate)
+
+        @if (User.IsInRole("ShopManager"))
+        {
+            @Html.LabelFor(model => model.AdminID, "Shop Operator")
+            @Html.DropDownList("AdminID", "--Yvela--")
+        }
         <input type="submit" value="ძებნა" />
     </div>
   

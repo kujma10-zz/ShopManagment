@@ -12,18 +12,11 @@ namespace ShopManagment
     using System;
     using System.Collections.Generic;
     
-    public partial class Admin
+    public partial class webpages_UsersInRoles
     {
-        public Admin()
-        {
-            this.Sales = new HashSet<Sale>();
-            this.webpages_UsersInRoles = new HashSet<webpages_UsersInRoles>();
-        }
+        public int UserId { get; set; }
+        public int RoleId { get; set; }
     
-        public int ID { get; set; }
-        public string Username { get; set; }
-    
-        public virtual ICollection<Sale> Sales { get; set; }
-        public virtual ICollection<webpages_UsersInRoles> webpages_UsersInRoles { get; set; }
+        public virtual Admin Admin { get; set; }
     }
 }

@@ -12,37 +12,42 @@
           <EntitySet Name="Products" EntityType="ShopModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sales" EntityType="ShopModel.Store.Sales" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Storages" EntityType="ShopModel.Store.Storages" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Balances__CatID__4316F928" Association="ShopModel.Store.FK__Balances__CatID__4316F928">
+          <EntitySet Name="webpages_UsersInRoles" EntityType="ShopModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Balances__CatID__17036CC0" Association="ShopModel.Store.FK__Balances__CatID__17036CC0">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Produc__440B1D61" Association="ShopModel.Store.FK__Balances__Produc__440B1D61">
+          <AssociationSet Name="FK__Balances__Produc__17F790F9" Association="ShopModel.Store.FK__Balances__Produc__17F790F9">
             <End Role="Products" EntitySet="Products" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Balances__Quanti__4222D4EF" Association="ShopModel.Store.FK__Balances__Quanti__4222D4EF">
+          <AssociationSet Name="FK__Balances__Quanti__160F4887" Association="ShopModel.Store.FK__Balances__Quanti__160F4887">
             <End Role="Storages" EntitySet="Storages" />
             <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__Disabl__3C69FB99" Association="ShopModel.Store.FK__Products__Disabl__3C69FB99">
+          <AssociationSet Name="FK__Products__Disabl__0B91BA14" Association="ShopModel.Store.FK__Products__Disabl__0B91BA14">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sales__CatID__4AB81AF0" Association="ShopModel.Store.FK__Sales__CatID__4AB81AF0">
+          <AssociationSet Name="FK__Sales__CatID__5D95E53A" Association="ShopModel.Store.FK__Sales__CatID__5D95E53A">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sales__ProductID__4BAC3F29" Association="ShopModel.Store.FK__Sales__ProductID__4BAC3F29">
+          <AssociationSet Name="FK__Sales__ProductID__5E8A0973" Association="ShopModel.Store.FK__Sales__ProductID__5E8A0973">
             <End Role="Products" EntitySet="Products" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sales__Returned__48CFD27E" Association="ShopModel.Store.FK__Sales__Returned__48CFD27E">
+          <AssociationSet Name="FK__Sales__Returned__5BAD9CC8" Association="ShopModel.Store.FK__Sales__Returned__5BAD9CC8">
             <End Role="Admins" EntitySet="Admins" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sales__StorageID__49C3F6B7" Association="ShopModel.Store.FK__Sales__StorageID__49C3F6B7">
+          <AssociationSet Name="FK__Sales__StorageID__5CA1C101" Association="ShopModel.Store.FK__Sales__StorageID__5CA1C101">
             <End Role="Storages" EntitySet="Storages" />
             <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserId" Association="ShopModel.Store.fk_UserId">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Admins">
@@ -107,7 +112,15 @@
           <Property Name="Opened" Type="datetime" Nullable="false" />
           <Property Name="Closed" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Balances__CatID__4316F928">
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Balances__CatID__17036CC0">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -119,7 +132,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Produc__440B1D61">
+        <Association Name="FK__Balances__Produc__17F790F9">
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -131,7 +144,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Balances__Quanti__4222D4EF">
+        <Association Name="FK__Balances__Quanti__160F4887">
           <End Role="Storages" Type="ShopModel.Store.Storages" Multiplicity="1" />
           <End Role="Balances" Type="ShopModel.Store.Balances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -143,7 +156,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__Disabl__3C69FB99">
+        <Association Name="FK__Products__Disabl__0B91BA14">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -155,7 +168,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sales__CatID__4AB81AF0">
+        <Association Name="FK__Sales__CatID__5D95E53A">
           <End Role="Categories" Type="ShopModel.Store.Categories" Multiplicity="1" />
           <End Role="Sales" Type="ShopModel.Store.Sales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -167,7 +180,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sales__ProductID__4BAC3F29">
+        <Association Name="FK__Sales__ProductID__5E8A0973">
           <End Role="Products" Type="ShopModel.Store.Products" Multiplicity="1" />
           <End Role="Sales" Type="ShopModel.Store.Sales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -179,7 +192,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sales__Returned__48CFD27E">
+        <Association Name="FK__Sales__Returned__5BAD9CC8">
           <End Role="Admins" Type="ShopModel.Store.Admins" Multiplicity="1" />
           <End Role="Sales" Type="ShopModel.Store.Sales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,7 +204,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sales__StorageID__49C3F6B7">
+        <Association Name="FK__Sales__StorageID__5CA1C101">
           <End Role="Storages" Type="ShopModel.Store.Storages" Multiplicity="1" />
           <End Role="Sales" Type="ShopModel.Store.Sales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -200,6 +213,18 @@
             </Principal>
             <Dependent Role="Sales">
               <PropertyRef Name="StorageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserId">
+          <End Role="Admins" Type="ShopModel.Store.Admins" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="ShopModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -245,6 +270,11 @@
           <AssociationSet Name="FK__Sales__StorageID__5CA1C101" Association="ShopModel.FK__Sales__StorageID__5CA1C101">
             <End Role="Storage" EntitySet="Storages" />
             <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <EntitySet Name="webpages_UsersInRoles" EntityType="ShopModel.webpages_UsersInRoles" />
+          <AssociationSet Name="fk_UserId" Association="ShopModel.fk_UserId">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Category">
@@ -354,6 +384,7 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Username" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sales" Relationship="ShopModel.FK__Sales__Returned__5BAD9CC8" FromRole="Admin" ToRole="Sale" />
+          <NavigationProperty Name="webpages_UsersInRoles" Relationship="ShopModel.fk_UserId" FromRole="Admin" ToRole="webpages_UsersInRoles" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
@@ -418,6 +449,27 @@
             </Principal>
             <Dependent Role="Sale">
               <PropertyRef Name="StorageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <NavigationProperty Name="Admin" Relationship="ShopModel.fk_UserId" FromRole="webpages_UsersInRoles" ToRole="Admin" />
+        </EntityType>
+        <Association Name="fk_UserId">
+          <End Type="ShopModel.Admin" Role="Admin" Multiplicity="1" />
+          <End Type="ShopModel.webpages_UsersInRoles" Role="webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -492,6 +544,14 @@
                 <ScalarProperty Name="StorageID" ColumnName="StorageID" />
                 <ScalarProperty Name="AdminID" ColumnName="AdminID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_UsersInRoles">
+            <EntityTypeMapping TypeName="ShopModel.webpages_UsersInRoles">
+              <MappingFragment StoreEntitySet="webpages_UsersInRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

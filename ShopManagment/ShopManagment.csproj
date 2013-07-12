@@ -179,7 +179,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShopHistoryController.cs" />
-    <Compile Include="Controllers\ShopHistoryManagController.cs" />
     <Compile Include="Controllers\ShopSalesController.cs" />
     <Compile Include="Controllers\StoragesController.cs" />
     <Compile Include="EntityModel.Context.cs">
@@ -213,6 +212,9 @@
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Storage.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_UsersInRoles.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -364,17 +366,8 @@
     <Content Include="Views\Balances\Index.cshtml" />
     <Content Include="Views\Home\ShopManagerPage.cshtml" />
     <Content Include="Views\ShopHistory\Index.cshtml" />
-    <Content Include="Views\ShopHistory\Details.cshtml" />
-    <Content Include="Views\ShopHistory\Create.cshtml" />
-    <Content Include="Views\ShopHistory\Edit.cshtml" />
-    <Content Include="Views\ShopHistory\Delete.cshtml" />
     <Content Include="Views\Categories\Restore.cshtml" />
     <Content Include="Views\Products\Restore.cshtml" />
-    <Content Include="Views\ShopHistoryManag\Create.cshtml" />
-    <Content Include="Views\ShopHistoryManag\Delete.cshtml" />
-    <Content Include="Views\ShopHistoryManag\Details.cshtml" />
-    <Content Include="Views\ShopHistoryManag\Edit.cshtml" />
-    <Content Include="Views\ShopHistoryManag\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

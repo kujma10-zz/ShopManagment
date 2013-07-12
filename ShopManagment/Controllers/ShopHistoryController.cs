@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ShopManagment.Controllers
 {
+    [Authorize(Roles = ("ShopOperator, ShopManager"))]
     public class ShopHistoryController : Controller
     {
         private ShopEntities db = new ShopEntities();
@@ -22,7 +23,17 @@ namespace ShopManagment.Controllers
             History history = new History();
             history.FromDate = DateTime.Now.AddDays(-3);
             history.ToDate = DateTime.Now.Date;
-            history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            if (User.IsInRole("ShopManager"))
+            {
+                ViewBag.AdminID = new SelectList(db.Admins.Join(db.webpages_UsersInRoles, a => a.ID, b => b.UserId, (a, b) => new { a.ID, a.Username, b.RoleId }).Where(p => p.RoleId == 2), "ID", "Username");
+                history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            }
+            else
+            {
+                int UserID = GetUserID();
+                history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate && a.AdminID == UserID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            }
+
             return View(history);
         }
 
@@ -32,121 +43,37 @@ namespace ShopManagment.Controllers
         [HttpPost]
         public ActionResult Index(History history)
         {
-            history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            if (User.IsInRole("ShopManager"))
+            {
+                if (history.AdminID == 0)
+                {
+                    history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+                }
+                else
+                {
+                    history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate && a.AdminID == history.AdminID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+                }
+                ViewBag.AdminID = new SelectList(db.Admins.Join(db.webpages_UsersInRoles, a => a.ID, b => b.UserId, (a, b) => new { a.ID, a.Username, b.RoleId }).Where(p => p.RoleId == 2), "ID", "Username");
+
+            }
+            else
+            {
+                int UserID = GetUserID();
+                history.sale = db.Sales.Where(a => a.Date > history.FromDate && a.Date < history.ToDate && a.AdminID == UserID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            }
+
             return View(history);
 
         }
 
-        //
-        // GET: /ShopHistory/Details/5
-
-        public ActionResult Details(int id = 0)
+        private int GetUserID()
         {
-            Sale sale = db.Sales.Find(id);
-            if (sale == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sale);
+            var adminInfo = db.Admins.Where(a => a.Username.Equals(User.Identity.Name)).First();
+            return adminInfo.ID;
         }
 
-        //
-        // GET: /ShopHistory/Create
 
-        public ActionResult Create()
-        {
-            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username");
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name");
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
-            ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name");
-            return View();
-        }
 
-        //
-        // POST: /ShopHistory/Create
 
-        [HttpPost]
-        public ActionResult Create(Sale sale)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Sales.Add(sale);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username", sale.AdminID);
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name", sale.CatID);
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", sale.ProductID);
-            ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name", sale.StorageID);
-            return View(sale);
-        }
-
-        //
-        // GET: /ShopHistory/Edit/5
-
-        public ActionResult Edit(int id = 0)
-        {
-            Sale sale = db.Sales.Find(id);
-            if (sale == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username", sale.AdminID);
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name", sale.CatID);
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", sale.ProductID);
-            ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name", sale.StorageID);
-            return View(sale);
-        }
-
-        //
-        // POST: /ShopHistory/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(Sale sale)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(sale).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username", sale.AdminID);
-            ViewBag.CatID = new SelectList(db.Categories, "ID", "Name", sale.CatID);
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", sale.ProductID);
-            ViewBag.StorageID = new SelectList(db.Storages, "ID", "Name", sale.StorageID);
-            return View(sale);
-        }
-
-        //
-        // GET: /ShopHistory/Delete/5
-
-        public ActionResult Delete(int id = 0)
-        {
-            Sale sale = db.Sales.Find(id);
-            if (sale == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sale);
-        }
-
-        //
-        // POST: /ShopHistory/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Sale sale = db.Sales.Find(id);
-            db.Sales.Remove(sale);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
-        }
     }
 }
