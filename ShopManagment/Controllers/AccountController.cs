@@ -13,6 +13,7 @@ using ShopManagment.Models;
 
 namespace ShopManagment.Controllers
 {
+    [InitializeSimpleMembership]
     [Authorize]
     public class AccountController : Controller
     {

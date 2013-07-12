@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ShopManagment.Models
 {
@@ -19,6 +20,6 @@ namespace ShopManagment.Models
       //  [DataType(DataType.Date)]
         [Display(Name = "To")]
         public DateTime ToDate { get; set; }
-
+        public int AdminID { get; set; }
     }
 }

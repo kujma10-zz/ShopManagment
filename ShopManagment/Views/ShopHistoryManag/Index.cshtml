@@ -20,8 +20,14 @@
     @Html.ValidationMessageFor(model => model.ToDate)
  //   @Html.DropDownList("ID", (IEnumerable<SelectListItem>) ViewBag.ShopOperators)
     
-    @Html.DropDownList("ShopOperators", "-- Yvela --")
-    
+    //@Html.DropDownList("ShopOperators", "-- Yvela --")
+    <div class="editor-label">
+            @Html.LabelFor(model => model.AdminID, "Shop Operator")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AdminID", "--Yvela--")
+            @Html.ValidationMessageFor(model => model.AdminID)
+        </div>
     <input type="submit" value="ძებნა" />
 }
 

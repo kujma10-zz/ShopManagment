@@ -29,9 +29,10 @@ namespace ShopManagment.Views.ShopHistoryManag
        //         var b = (from roles in db.web)
        //     }
        //     ViewBag.ShopOperators = new SelectList(query.AsEnumerable(), "ID", "Username");
+            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username");
 
-            history.operators = new SelectList(db.Admins.Select(a => new { a.ID, a.Username }), "ID", "Username");
-            ViewBag.ShopOperators = history.operators;
+           // history.operators = new SelectList(db.Admins.Select(a => new { a.ID, a.Username }), "ID", "Username");
+            //ViewBag.ShopOperators = history.operators;
             
             return View(history);
         }
@@ -40,9 +41,10 @@ namespace ShopManagment.Views.ShopHistoryManag
         // POST: /ShopHistory/
 
         [HttpPost]
-        public ActionResult Index(Models.History history, FormCollection form)
+        public ActionResult Index(Models.History history)
         {
-            history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate && a.AdminID == history.AdminID).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            ViewBag.AdminID = new SelectList(db.Admins, "ID", "Username");
             return View(history);
 
         }
