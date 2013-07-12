@@ -22,6 +22,13 @@ namespace ShopManagment.Views.ShopHistoryManag
             history.FromDate = DateTime.Now.AddDays(-3);
             history.ToDate = DateTime.Now;
             history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+
+            var query = db.Admins.Select(c => new { c.ID, c.Username });
+       //     ViewBag.ShopOperators = new SelectList(query.AsEnumerable(), "ID", "UserName");
+            var mda = new SelectList(query.AsEnumerable(), "ID", "UserName");
+
+            ViewData["mdaa"] = mda;
+            
             return View(history);
         }
 
@@ -29,9 +36,9 @@ namespace ShopManagment.Views.ShopHistoryManag
         // POST: /ShopHistory/
 
         [HttpPost]
-        public ActionResult Index(Models.History history)
+        public ActionResult Index(Models.History history, FormCollection form)
         {
-            history.sale = db.Sales.Where(a => a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
+            history.sale = db.Sales.Where(a => a.AdminID == form["mdaa"][0] && a.Date >= history.FromDate && a.Date <= history.ToDate).Include(s => s.Admin).Include(s => s.Category).Include(s => s.Product).Include(s => s.Storage);
             return View(history);
 
         }
