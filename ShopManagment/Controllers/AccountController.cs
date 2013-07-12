@@ -79,8 +79,17 @@ namespace ShopManagment.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+                    if (!WebSecurity.UserExists(model.UserName))
+                    {
+                        WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "თანამშრომელი ასეთი სახელით უკვე არსებობს!");
+                        return View(model);
+                    }
+                    if (!Roles.IsUserInRole(model.UserName, "ShopOperator"))
+                        Roles.AddUserToRole(model.UserName, "ShopOperator");
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
@@ -200,7 +209,7 @@ namespace ShopManagment.Controllers
             return View(model);
         }
 
-      
+
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
